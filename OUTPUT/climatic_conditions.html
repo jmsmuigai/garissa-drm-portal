@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climatic Conditions - Garissa DRM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@600;800;900&family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-dark: #020510;
+            --text-main: #f0f4ff;
+            --text-muted: #8899bb;
+            --cyan: #00f3ff;
+            --pink: #ff007f;
+            --gold: #ffd700;
+            --border-glow: rgba(0, 243, 255, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: transparent;
+            color: var(--text-main);
+            margin: 0;
+            padding: 30px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(8, 14, 32, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(0, 243, 255, 0.05);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 32px;
+            color: var(--cyan);
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+            border-bottom: 2px solid rgba(0, 243, 255, 0.2);
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 26px;
+            color: var(--gold);
+            margin-top: 35px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0, 243, 255, 0.2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Climatic Conditions & Analysis</h1>
+        
+        <p>Garissa County occupies a vast expanse of northeastern Kenya, characterized by an arid and semi-arid lands (ASAL) climate. Understanding the nuances of our climate is the first step toward building resilience against both punishing droughts and sudden, devastating floods.</p>
+
+        <h2>The Bi-Modal Rainfall Reality</h2>
+        <p>Garissa experiences a <span class="highlight">bi-modal rainfall pattern</span>: the 'Long Rains' (March to May) and the 'Short Rains' (October to December). However, these seasons have become increasingly unpredictable due to climate change. Average annual rainfall hovers between 250mm and 350mm, making every drop precious, but also meaning the baked earth cannot easily absorb sudden downpours.</p>
+
+        <h2>Temperature Anomalies</h2>
+        <p>Temperatures regularly soar above 35°C (95°F), with the hottest months being February and March. Recently, GEWAS telemetric sensors and Earth Observation satellites have recorded temperature anomalies averaging <span class="highlight">+1.5°C to +2.4°C above the historical baseline</span>. These elevated temperatures accelerate evapotranspiration, intensifying drought conditions and hardening the soil, which ironically exacerbates surface runoff when the rains finally fall.</p>
+
+        <h2>The El Niño / La Niña Cycle (ENSO)</h2>
+        <p>The El Niño-Southern Oscillation (ENSO) is the most significant driver of climate variability in Garissa. While La Niña typically spells prolonged drought and famine, <span class="highlight">El Niño brings the opposite extreme: sudden, catastrophic flooding</span>.</p>
+        <p>The current "Super El Niño" forecast for OND (October-November-December) 2026 indicates a high probability of deeply above-normal rainfall. This isn't just about local rainfall; El Niño also causes massive precipitation upstream in the Mt. Kenya and Aberdare catchments, which ultimately courses down the River Tana directly into Garissa.</p>
+
+        <h2>Rainfall Projection Dashboard</h2>
+        <div class="chart-container">
+            <canvas id="rainfallChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('rainfallChart').getContext('2d');
+        const gradientBlue = ctx.createLinearGradient(0, 0, 0, 400);
+        gradientBlue.addColorStop(0, 'rgba(0, 243, 255, 0.8)');
+        gradientBlue.addColorStop(1, 'rgba(0, 243, 255, 0.1)');
+
+        const gradientPink = ctx.createLinearGradient(0, 0, 0, 400);
+        gradientPink.addColorStop(0, 'rgba(255, 0, 127, 0.8)');
+        gradientPink.addColorStop(1, 'rgba(255, 0, 127, 0.1)');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [
+                    {
+                        label: 'Historical Average Rainfall (mm)',
+                        data: [15, 12, 35, 75, 40, 10, 5, 8, 12, 50, 65, 30],
+                        backgroundColor: gradientBlue,
+                        borderColor: '#00f3ff',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'Projected El Niño Rainfall 2026 (mm)',
+                        data: [18, 15, 45, 90, 50, 12, 5, 10, 25, 180, 240, 110],
+                        backgroundColor: gradientPink,
+                        borderColor: '#ff007f',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: { color: '#f0f4ff', font: { family: 'Inter' } }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#8899bb' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#8899bb' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

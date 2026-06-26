@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- pycsw 2.2.0 -->
+<csw:GetRecordByIdResponse xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dct="http://purl.org/dc/terms/" xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml" xmlns:ows="http://www.opengis.net/ows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/cat/csw/2.0.2 http://schemas.opengis.net/csw/2.0.2/CSW-discovery.xsd">
+  <dif:DIF xsi:schemaLocation="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/ http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/dif.xsd">
+    <dif:Entry_ID>fa100a4a-ee62-11e9-83d8-0242ac150005</dif:Entry_ID>
+    <dif:Entry_Title>Kenya Roads, Tracks and Trials (Openstreetmap)</dif:Entry_Title>
+    <dif:Data_Set_Citation>
+      <dif:Dataset_Creator>wraadmin</dif:Dataset_Creator>
+      <dif:Dataset_Release_Date>2019-10-14T09:14:00Z</dif:Dataset_Release_Date>
+      <dif:Dataset_Publisher>wraadmin</dif:Dataset_Publisher>
+      <dif:Data_Presentation_Form>vector</dif:Data_Presentation_Form>
+    </dif:Data_Set_Citation>
+    <dif:ISO_Topic_Category>transportation</dif:ISO_Topic_Category>
+    <dif:Temporal_Coverage>
+      <dif:Start_Date/>
+      <dif:End_Date/>
+    </dif:Temporal_Coverage>
+    <dif:Spatial_Coverage>
+      <dif:Southernmost_Latitude>-4.7305023</dif:Southernmost_Latitude>
+      <dif:Northernmost_Latitude>5.2806254</dif:Northernmost_Latitude>
+      <dif:Westernmost_Longitude>33.9080515</dif:Westernmost_Longitude>
+      <dif:Easternmost_Longitude>42.0760913</dif:Easternmost_Longitude>
+    </dif:Spatial_Coverage>
+    <dif:Access_Constraints/>
+    <dif:Data_Set_Language>eng</dif:Data_Set_Language>
+    <dif:Originating_Center/>
+    <dif:Summary>Data from the OpenStreetMap (OSM) project (www.openstreetmap.org). Obtained from geofabrik.de. Detailed metadata available from http://download.geofabrik.de/osm-data-in-gis-formats-free.pdf</dif:Summary>
+    <dif:DIF_Creation_Date>2019-10-14T09:14:00Z</dif:DIF_Creation_Date>
+    <dif:Related_URL>
+      <dif:URL/>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Kenya Roads</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/geoserver/wms?layers=geonode%3Agis_osm_roads_free_1&amp;service=WMS&amp;format=image%2Fjpeg&amp;request=GetMap&amp;height=550&amp;width=448&amp;bbox=33.908051500000000%2C-4.730502300000000%2C42.076091300000000%2C5.280625400000000&amp;srs=EPSG%3A4326</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Kenya Roads</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/geoserver/wms?layers=geonode%3Agis_osm_roads_free_1&amp;service=WMS&amp;format=application%2Fpdf&amp;request=GetMap&amp;height=550&amp;width=448&amp;bbox=33.908051500000000%2C-4.730502300000000%2C42.076091300000000%2C5.280625400000000&amp;srs=EPSG%3A4326</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Kenya Roads</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/geoserver/wms?layers=geonode%3Agis_osm_roads_free_1&amp;service=WMS&amp;format=image%2Fpng&amp;request=GetMap&amp;height=550&amp;width=448&amp;bbox=33.908051500000000%2C-4.730502300000000%2C42.076091300000000%2C5.280625400000000&amp;srs=EPSG%3A4326</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Kenya Roads</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/geoserver/wfs?outputFormat=SHAPE-ZIP&amp;service=WFS&amp;srs=EPSG%3A4326&amp;request=GetFeature&amp;format_options=charset%3AUTF-8&amp;typename=geonode%3Agis_osm_roads_free_1&amp;version=1.0.0</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Kenya Roads</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/geoserver/wfs?outputFormat=gml2&amp;service=WFS&amp;srs=EPSG%3A4326&amp;request=GetFeature&amp;typename=geonode%3Agis_osm_roads_free_1&amp;version=1.0.0</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Kenya Roads</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/geoserver/wfs?outputFormat=text%2Fxml%3B+subtype%3Dgml%2F3.1.1&amp;service=WFS&amp;srs=EPSG%3A4326&amp;request=GetFeature&amp;typename=geonode%3Agis_osm_roads_free_1&amp;version=1.0.0</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Kenya Roads</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/geoserver/wfs?outputFormat=csv&amp;service=WFS&amp;srs=EPSG%3A4326&amp;request=GetFeature&amp;typename=geonode%3Agis_osm_roads_free_1&amp;version=1.0.0</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Kenya Roads</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/geoserver/wfs?outputFormat=excel&amp;service=WFS&amp;srs=EPSG%3A4326&amp;request=GetFeature&amp;typename=geonode%3Agis_osm_roads_free_1&amp;version=1.0.0</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Kenya Roads</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/geoserver/wfs?srsName=EPSG%3A4326&amp;outputFormat=json&amp;service=WFS&amp;srs=EPSG%3A4326&amp;request=GetFeature&amp;typename=geonode%3Agis_osm_roads_free_1&amp;version=1.0.0</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Kenya Roads</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/geoserver/wms/kml?layers=geonode%3Agis_osm_roads_free_1&amp;mode=download</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Kenya Roads</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/geoserver/wms/kml?layers=geonode%3Agis_osm_roads_free_1&amp;mode=refresh</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Kenya Roads</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/geoserver/ows?layers=geonode:gis_osm_roads_free_1&amp;version=1.1.1&amp;request=GetMap&amp;service=WMS&amp;format=image/png8</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Kenya Roads</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/geoserver/wms?request=GetLegendGraphic&amp;format=image/png&amp;WIDTH=20&amp;HEIGHT=20&amp;LAYER=geonode:gis_osm_roads_free_1&amp;legend_options=fontAntiAliasing:true;fontSize:12;forceLabels:on</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>OGC WMS: geonode Service</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/geoserver/ows</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>OGC WFS: geonode Service</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/geoserver/wfs</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Kenya Roads</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/geoserver/gwc/service/gmaps?layers=geonode:gis_osm_roads_free_1&amp;zoom={z}&amp;x={x}&amp;y={y}&amp;format=image/png8</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Kenya Roads</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/download/66</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Web address (URL)</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/layers/geonode:gis_osm_roads_free_1</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Related_URL>
+      <dif:URL_Content_Type>
+        <dif:Type>Kenya Roads</dif:Type>
+      </dif:URL_Content_Type>
+      <dif:URL>https://spatial.wraisc.org/uploaded/thumbs/layer-fa100a4a-ee62-11e9-83d8-0242ac150005-thumb.png</dif:URL>
+      <dif:Description> Tracks and Trials (Openstreetmap)</dif:Description>
+    </dif:Related_URL>
+    <dif:Metadata_Name>CEOS IDN DIF</dif:Metadata_Name>
+    <dif:Metadata_Version>9.7</dif:Metadata_Version>
+  </dif:DIF>
+</csw:GetRecordByIdResponse>

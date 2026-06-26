@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- pycsw 2.2.0 -->
+<csw:GetRecordByIdResponse xmlns:atom="http://www.w3.org/2005/Atom" xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dct="http://purl.org/dc/terms/" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml" xmlns:ows="http://www.opengis.net/ows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/cat/csw/2.0.2 http://schemas.opengis.net/csw/2.0.2/CSW-discovery.xsd">
+  <atom:entry xmlns:georss="http://www.georss.org/georss" xsi:schemaLocation="http://www.w3.org/2005/Atom http://www.kbcafe.com/rss/atom.xsd.xml">
+    <atom:author>
+      <atom:name>admin</atom:name>
+    </atom:author>
+    <atom:contributor>admin</atom:contributor>
+    <atom:id>915b9944-1f2a-11ea-b323-0242ac180007</atom:id>
+    <dc:identifier>915b9944-1f2a-11ea-b323-0242ac180007</dc:identifier>
+    <atom:link href="https://spatial.wraisc.org/download/94" title="Kenya Population Density Adjusted to Census 2019 (Original Dataset Format)" type="WWW:DOWNLOAD-1.0-http--download"/>
+    <atom:link href="https://spatial.wraisc.org/geoserver/wms?layers=geonode%3Aken_ppp_2019_adjtocensus_u16bit_v2&amp;service=WMS&amp;format=image%2Fjpeg&amp;request=GetMap&amp;height=550&amp;width=434&amp;bbox=33.910288655000045%2C-4.676879882999970%2C41.886955289760046%2C5.413953409970031&amp;srs=EPSG%3A4326" title="Kenya Population Density Adjusted to Census 2019 (JPEG Format)" type="WWW:DOWNLOAD-1.0-http--download"/>
+    <atom:link href="https://spatial.wraisc.org/geoserver/wms?layers=geonode%3Aken_ppp_2019_adjtocensus_u16bit_v2&amp;service=WMS&amp;format=application%2Fpdf&amp;request=GetMap&amp;height=550&amp;width=434&amp;bbox=33.910288655000045%2C-4.676879882999970%2C41.886955289760046%2C5.413953409970031&amp;srs=EPSG%3A4326" title="Kenya Population Density Adjusted to Census 2019 (PDF Format)" type="WWW:DOWNLOAD-1.0-http--download"/>
+    <atom:link href="https://spatial.wraisc.org/geoserver/wms?layers=geonode%3Aken_ppp_2019_adjtocensus_u16bit_v2&amp;service=WMS&amp;format=image%2Fpng&amp;request=GetMap&amp;height=550&amp;width=434&amp;bbox=33.910288655000045%2C-4.676879882999970%2C41.886955289760046%2C5.413953409970031&amp;srs=EPSG%3A4326" title="Kenya Population Density Adjusted to Census 2019 (PNG Format)" type="WWW:DOWNLOAD-1.0-http--download"/>
+    <atom:link href="https://spatial.wraisc.org/geoserver/wcs?service=WCS&amp;format=application%2Fx-gzip&amp;request=GetCoverage&amp;srs=EPSG%3A4326&amp;version=2.0.1&amp;bbox=33.910288655000045%2C-4.676879882999970%2C41.886955289760046%2C5.413953409970031&amp;coverageid=geonode%3Aken_ppp_2019_adjtocensus_u16bit_v2" title="Kenya Population Density Adjusted to Census 2019 (GZIP Format)" type="WWW:DOWNLOAD-1.0-http--download"/>
+    <atom:link href="https://spatial.wraisc.org/geoserver/wcs?service=WCS&amp;format=image%2Ftiff&amp;request=GetCoverage&amp;srs=EPSG%3A4326&amp;version=2.0.1&amp;bbox=33.910288655000045%2C-4.676879882999970%2C41.886955289760046%2C5.413953409970031&amp;coverageid=geonode%3Aken_ppp_2019_adjtocensus_u16bit_v2" title="Kenya Population Density Adjusted to Census 2019 (GeoTIFF Format)" type="WWW:DOWNLOAD-1.0-http--download"/>
+    <atom:link href="https://spatial.wraisc.org/geoserver/wms/kml?layers=geonode%3Aken_ppp_2019_adjtocensus_u16bit_v2&amp;mode=download" title="Kenya Population Density Adjusted to Census 2019 (KML Format)" type="WWW:DOWNLOAD-1.0-http--download"/>
+    <atom:link href="https://spatial.wraisc.org/geoserver/wms/kml?layers=geonode%3Aken_ppp_2019_adjtocensus_u16bit_v2&amp;mode=refresh" title="Kenya Population Density Adjusted to Census 2019 (View in Google Earth Format)" type="WWW:DOWNLOAD-1.0-http--download"/>
+    <atom:link href="https://spatial.wraisc.org/layers/geonode:ken_ppp_2019_adjtocensus_u16bit_v2" title="Web address (URL)" type="WWW:LINK-1.0-http--link"/>
+    <atom:link href="https://spatial.wraisc.org/geoserver/ows?layers=geonode:ken_ppp_2019_adjtocensus_u16bit_v2&amp;version=1.1.1&amp;request=GetMap&amp;service=WMS&amp;format=image/png8" title="Kenya Population Density Adjusted to Census 2019 (Remote Thumbnail Format)" type="WWW:DOWNLOAD-1.0-http--download"/>
+    <atom:link href="https://spatial.wraisc.org/geoserver/wms?request=GetLegendGraphic&amp;format=image/png&amp;WIDTH=20&amp;HEIGHT=20&amp;LAYER=geonode:ken_ppp_2019_adjtocensus_u16bit_v2&amp;legend_options=fontAntiAliasing:true;fontSize:12;forceLabels:on" title="Kenya Population Density Adjusted to Census 2019 (Legend Format)" type="WWW:DOWNLOAD-1.0-http--download"/>
+    <atom:link href="https://spatial.wraisc.org/geoserver/ows" title="OGC WMS: geonode Service" type="OGC:WMS"/>
+    <atom:link href="https://spatial.wraisc.org/geoserver/wcs" title="OGC WCS: geonode Service" type="OGC:WCS"/>
+    <atom:link href="https://spatial.wraisc.org/geoserver/gwc/service/gmaps?layers=geonode:ken_ppp_2019_adjtocensus_u16bit_v2&amp;zoom={z}&amp;x={x}&amp;y={y}&amp;format=image/png8" title="Kenya Population Density Adjusted to Census 2019 (Tiles Format)" type="WWW:DOWNLOAD-1.0-http--download"/>
+    <atom:link href="https://spatial.wraisc.org/uploaded/thumbs/layer-915b9944-1f2a-11ea-b323-0242ac180007-thumb.png" title="Kenya Population Density Adjusted to Census 2019 (Thumbnail Format)" type="WWW:DOWNLOAD-1.0-http--download"/>
+    <atom:link href="https://spatial.wraisc.org/catalogue/csw?service=CSW&amp;version=2.0.2&amp;request=GetRepositoryItem&amp;id=915b9944-1f2a-11ea-b323-0242ac180007"/>
+    <atom:title>Kenya Population Density Adjusted to Census 2019</atom:title>
+    <atom:updated>2019-12-15T11:03:00Z</atom:updated>
+    <atom:published>2019-12-15T11:03:00Z</atom:published>
+    <atom:summary>Population density (people / pixel - about 92m x 92m).  County population counts from Census 2019 were proportionally distributed according to densities estimated by the WorldPop Project to arrive at population distribution that is consistent with Census 2019 at County level.</atom:summary>
+    <georss:where>
+      <gml:Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/4326">
+        <gml:lowerCorner>-4.676879883 33.910288655</gml:lowerCorner>
+        <gml:upperCorner>5.41395340997 41.8869552898</gml:upperCorner>
+      </gml:Envelope>
+    </georss:where>
+  </atom:entry>
+</csw:GetRecordByIdResponse>

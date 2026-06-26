@@ -1,0 +1,3 @@
+("Kenya_SRTM30meters@1" >= 10 AND "Kenya_SRTM30meters@1" < 170) * 1 +
+("Kenya_SRTM30meters@1" >= 170 AND "Kenya_SRTM30meters@1" < 330) * 2 +
+("Kenya_SRTM30meters@1" >= 330 AND "Kenya_SRTM30meters@1" <= 497) * 3

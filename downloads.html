@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📥 Download Center - GEWAS</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Orbitron:wght@600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #050814;
+            --text-main: #f0f4ff;
+            --cyan: #00f3ff;
+            --gold: #ffd700;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--gold);
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .dl-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: transform 0.2s;
+        }
+
+        .dl-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255,215,0,0.1);
+        }
+
+        .title {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyan);
+            font-size: 16px;
+        }
+
+        .desc {
+            font-size: 12px;
+            color: #8899bb;
+            flex: 1;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--cyan);
+            color: var(--text-main);
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: var(--cyan);
+            color: #000;
+        }
+        
+        .btn.gold {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: var(--gold);
+        }
+        .btn.gold:hover {
+            background: var(--gold);
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>📥 GEWAS Download Center</h1>
+        <p>High-resolution maps, raw data layers, and automated reports for Garissa DRM operations.</p>
+        <a href="index.html" class="btn" style="display:inline-block; margin-top:20px;">🔙 Back to Portal</a>
+    </div>
+
+    <div class="grid">
+        <!-- Card 1 -->
+        <div class="dl-card">
+            <div class="title">🗺️ Master Flood Extent</div>
+            <div class="desc">Complete vector dataset of historical and projected flood extents for Garissa County. Contains extreme, high, medium, and low risk zones.</div>
+            <div class="btn-group">
+                <a href="OUTPUT/garissa_flood_risk_2026.kml" class="btn" download>📥 KML</a>
+                <a href="OUTPUT/extreme_risk_zone.geojson" class="btn" download>📥 GeoJSON</a>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="dl-card">
+            <div class="title">🏫 Schools Risk Data</div>
+            <div class="desc">All educational facilities in Garissa cross-referenced with flood risk zones. Includes NN vulnerability scores.</div>
+            <div class="btn-group">
+                <a href="OUTPUT/schools_risk_assessed.geojson" class="btn" download>📥 GeoJSON</a>
+                <a href="OUTPUT/schools_risk_map.html" class="btn gold" target="_blank">👁️ View Map</a>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="dl-card">
+            <div class="title">🏥 Health Facilities</div>
+            <div class="desc">Dispensaries, clinics, and hospitals mapped against flood zones. Essential for cold-chain risk management.</div>
+            <div class="btn-group">
+                <a href="OUTPUT/health_facilities_risk_assessed.geojson" class="btn" download>📥 GeoJSON</a>
+                <a href="OUTPUT/health_facilities_risk_map.html" class="btn gold" target="_blank">👁️ View Map</a>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="dl-card">
+            <div class="title">💧 Humanitarian Boreholes</div>
+            <div class="desc">Critical water supply points for livestock and human consumption. Tagged with functional status and flood risk distance.</div>
+            <div class="btn-group">
+                <a href="OUTPUT/boreholes_risk_assessed.geojson" class="btn" download>📥 GeoJSON</a>
+                <a href="OUTPUT/boreholes_risk_map.html" class="btn gold" target="_blank">👁️ View Map</a>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="dl-card">
+            <div class="title">📈 Full Sub-County Metrics</div>
+            <div class="desc">Combined exposure statistics across all sub-counties. Useful for Looker/Tableau dashboards.</div>
+            <div class="btn-group">
+                <a href="OUTPUT/looker_combined_risk_data.csv" class="btn" download>📥 CSV</a>
+                <a href="OUTPUT/subcounty_resource_counts.csv" class="btn" download>📥 Summary CSV</a>
+            </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="dl-card">
+            <div class="title">🏞️ Hydrology Network</div>
+            <div class="desc">Tana River channel, laghas, and general drainage network mapped for Garissa County.</div>
+            <div class="btn-group">
+                <a href="OUTPUT/rivers.geojson" class="btn" download>📥 GeoJSON</a>
+                <a href="OUTPUT/rivers_and_laghas_map.html" class="btn gold" target="_blank">👁️ View Map</a>
+            </div>
+        </div>
+        
+        <!-- Card 7 -->
+        <div class="dl-card" style="border-color: #ff007f;">
+            <div class="title" style="color: #ff007f;">⚠️ Tana River Border Buffer</div>
+            <div class="desc">Special 1km external buffer towards Tana River County capturing border schools and clinics shared by both communities.</div>
+            <div class="btn-group">
+                <a href="OUTPUT/tana_buffer_zone.geojson" class="btn" download>📥 GeoJSON</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- pycsw 2.2.0 -->
+<csw:GetRecordByIdResponse xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dct="http://purl.org/dc/terms/" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml" xmlns:ows="http://www.opengis.net/ows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/cat/csw/2.0.2 http://schemas.opengis.net/csw/2.0.2/CSW-discovery.xsd">
+  <metadata xsi:noNamespaceSchemaLocation="http://www.fgdc.gov/metadata/fgdc-std-001-1998.xsd">
+    <idinfo>
+      <datasetid>915b9944-1f2a-11ea-b323-0242ac180007</datasetid>
+      <citation>
+        <citeinfo>
+          <title>Kenya Population Density Adjusted to Census 2019</title>
+          <publinfo>
+            <publish>admin</publish>
+          </publinfo>
+          <origin>admin</origin>
+          <geoform>grid</geoform>
+          <onlink></onlink>
+          <onlink type="WWW:DOWNLOAD-1.0-http--download">https://spatial.wraisc.org/download/94</onlink>
+          <onlink type="WWW:DOWNLOAD-1.0-http--download">https://spatial.wraisc.org/geoserver/wms?layers=geonode%3Aken_ppp_2019_adjtocensus_u16bit_v2&amp;service=WMS&amp;format=image%2Fjpeg&amp;request=GetMap&amp;height=550&amp;width=434&amp;bbox=33.910288655000045%2C-4.676879882999970%2C41.886955289760046%2C5.413953409970031&amp;srs=EPSG%3A4326</onlink>
+          <onlink type="WWW:DOWNLOAD-1.0-http--download">https://spatial.wraisc.org/geoserver/wms?layers=geonode%3Aken_ppp_2019_adjtocensus_u16bit_v2&amp;service=WMS&amp;format=application%2Fpdf&amp;request=GetMap&amp;height=550&amp;width=434&amp;bbox=33.910288655000045%2C-4.676879882999970%2C41.886955289760046%2C5.413953409970031&amp;srs=EPSG%3A4326</onlink>
+          <onlink type="WWW:DOWNLOAD-1.0-http--download">https://spatial.wraisc.org/geoserver/wms?layers=geonode%3Aken_ppp_2019_adjtocensus_u16bit_v2&amp;service=WMS&amp;format=image%2Fpng&amp;request=GetMap&amp;height=550&amp;width=434&amp;bbox=33.910288655000045%2C-4.676879882999970%2C41.886955289760046%2C5.413953409970031&amp;srs=EPSG%3A4326</onlink>
+          <onlink type="WWW:DOWNLOAD-1.0-http--download">https://spatial.wraisc.org/geoserver/wcs?service=WCS&amp;format=application%2Fx-gzip&amp;request=GetCoverage&amp;srs=EPSG%3A4326&amp;version=2.0.1&amp;bbox=33.910288655000045%2C-4.676879882999970%2C41.886955289760046%2C5.413953409970031&amp;coverageid=geonode%3Aken_ppp_2019_adjtocensus_u16bit_v2</onlink>
+          <onlink type="WWW:DOWNLOAD-1.0-http--download">https://spatial.wraisc.org/geoserver/wcs?service=WCS&amp;format=image%2Ftiff&amp;request=GetCoverage&amp;srs=EPSG%3A4326&amp;version=2.0.1&amp;bbox=33.910288655000045%2C-4.676879882999970%2C41.886955289760046%2C5.413953409970031&amp;coverageid=geonode%3Aken_ppp_2019_adjtocensus_u16bit_v2</onlink>
+          <onlink type="WWW:DOWNLOAD-1.0-http--download">https://spatial.wraisc.org/geoserver/wms/kml?layers=geonode%3Aken_ppp_2019_adjtocensus_u16bit_v2&amp;mode=download</onlink>
+          <onlink type="WWW:DOWNLOAD-1.0-http--download">https://spatial.wraisc.org/geoserver/wms/kml?layers=geonode%3Aken_ppp_2019_adjtocensus_u16bit_v2&amp;mode=refresh</onlink>
+          <onlink type="WWW:LINK-1.0-http--link">https://spatial.wraisc.org/layers/geonode:ken_ppp_2019_adjtocensus_u16bit_v2</onlink>
+          <onlink type="WWW:DOWNLOAD-1.0-http--download">https://spatial.wraisc.org/geoserver/ows?layers=geonode:ken_ppp_2019_adjtocensus_u16bit_v2&amp;version=1.1.1&amp;request=GetMap&amp;service=WMS&amp;format=image/png8</onlink>
+          <onlink type="WWW:DOWNLOAD-1.0-http--download">https://spatial.wraisc.org/geoserver/wms?request=GetLegendGraphic&amp;format=image/png&amp;WIDTH=20&amp;HEIGHT=20&amp;LAYER=geonode:ken_ppp_2019_adjtocensus_u16bit_v2&amp;legend_options=fontAntiAliasing:true;fontSize:12;forceLabels:on</onlink>
+          <onlink type="OGC:WMS">https://spatial.wraisc.org/geoserver/ows</onlink>
+          <onlink type="OGC:WCS">https://spatial.wraisc.org/geoserver/wcs</onlink>
+          <onlink type="WWW:DOWNLOAD-1.0-http--download">https://spatial.wraisc.org/geoserver/gwc/service/gmaps?layers=geonode:ken_ppp_2019_adjtocensus_u16bit_v2&amp;zoom={z}&amp;x={x}&amp;y={y}&amp;format=image/png8</onlink>
+          <onlink type="WWW:DOWNLOAD-1.0-http--download">https://spatial.wraisc.org/uploaded/thumbs/layer-915b9944-1f2a-11ea-b323-0242ac180007-thumb.png</onlink>
+        </citeinfo>
+      </citation>
+      <accconst></accconst>
+      <descript>
+        <abstract>Population density (people / pixel - about 92m x 92m).  County population counts from Census 2019 were proportionally distributed according to densities estimated by the WorldPop Project to arrive at population distribution that is consistent with Census 2019 at County level.</abstract>
+      </descript>
+      <spdom>
+        <bounding>
+          <westbc>33.910288655</westbc>
+          <eastbc>41.8869552898</eastbc>
+          <northbc>5.41395340997</northbc>
+          <southbc>-4.676879883</southbc>
+        </bounding>
+      </spdom>
+      <datacred>admin</datacred>
+      <spdoinfo>
+        <direct>dataset</direct>
+      </spdoinfo>
+    </idinfo>
+    <distinfo>
+      <stdorder>
+        <digform>
+          <digtinfo>
+            <formname>grid</formname>
+          </digtinfo>
+        </digform>
+      </stdorder>
+    </distinfo>
+    <lineage>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <title></title>
+          </citeinfo>
+        </srccite>
+      </srcinfo>
+    </lineage>
+    <metainfo>
+      <metd>2019-12-15T11:03:00Z</metd>
+    </metainfo>
+  </metadata>
+</csw:GetRecordByIdResponse>

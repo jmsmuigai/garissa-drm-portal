@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitigation Action Plan - Garissa DRM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@600;800;900&family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #020510;
+            --text-main: #f0f4ff;
+            --text-muted: #8899bb;
+            --cyan: #00f3ff;
+            --emerald: #10d98c;
+            --gold: #ffd700;
+            --border-glow: rgba(0, 243, 255, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: transparent;
+            color: var(--text-main);
+            margin: 0;
+            padding: 30px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(8, 14, 32, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(0, 243, 255, 0.05);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 32px;
+            color: var(--cyan);
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+            border-bottom: 2px solid rgba(0, 243, 255, 0.2);
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 26px;
+            color: var(--emerald);
+            margin-top: 35px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(16, 217, 140, 0.3);
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .action-step {
+            display: flex;
+            gap: 20px;
+            background: rgba(16, 217, 140, 0.05);
+            border-left: 4px solid var(--emerald);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 12px 12px 0;
+            transition: all 0.2s ease;
+        }
+
+        .action-step:hover {
+            background: rgba(16, 217, 140, 0.1);
+            transform: translateX(5px);
+        }
+
+        .step-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--emerald);
+            opacity: 0.8;
+        }
+
+        .step-content h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--text-main);
+            font-size: 18px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0, 243, 255, 0.2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Strategic Mitigation Action Plan</h1>
+        
+        <p>Knowing the risk is only half the battle. The Garissa County DRM Mitigation Action Plan outlines our concrete, multi-agency protocols designed to protect lives, safeguard critical infrastructure, and ensure rapid recovery following climatic shocks.</p>
+
+        <h2>Four-Pillar Early Warning Protocol</h2>
+
+        <div class="action-step">
+            <div class="step-number">01</div>
+            <div class="step-content">
+                <h3>Vigilance & Telemetry (Phase Green)</h3>
+                <p>Continuous monitoring of Earth Observation satellites (Sentinel-1, MODIS) and upstream dam telemetry via GEWAS. During this phase, county officials focus on clearing drainage systems in Garissa Town and pre-positioning non-food items (NFIs) in high-risk zones like Fafi and Lagdera.</p>
+            </div>
+        </div>
+
+        <div class="action-step" style="border-left-color: var(--gold); background: rgba(255, 215, 0, 0.05);">
+            <div class="step-number" style="color: var(--gold);">02</div>
+            <div class="step-content">
+                <h3>Community Alerting (Phase Amber)</h3>
+                <p>Triggered when Masinga Dam reaches 98% capacity or intense local rainfall is forecast. SMS warnings are dispatched to community leaders. Schools within the 1km Tana buffer zone initiate soft-evacuation protocols. Livestock vaccination drives for Rift Valley Fever (RVF) are accelerated.</p>
+            </div>
+        </div>
+
+        <div class="action-step" style="border-left-color: #ff8c00; background: rgba(255, 140, 0, 0.05);">
+            <div class="step-number" style="color: #ff8c00;">03</div>
+            <div class="step-content">
+                <h3>Active Evacuation (Phase Red)</h3>
+                <p>Triggered upon spillway release or imminent lagha flash flooding. The GEWAS Master Map is locked to real-time mode. At-risk health facilities execute cold-chain relocation (moving vital vaccines to higher ground). Search and rescue teams are deployed to vulnerable riverine settlements.</p>
+            </div>
+        </div>
+
+        <div class="action-step" style="border-left-color: var(--cyan); background: rgba(0, 243, 255, 0.05);">
+            <div class="step-number" style="color: var(--cyan);">04</div>
+            <div class="step-content">
+                <h3>Recovery & Damage Assessment (Phase Blue)</h3>
+                <p>Post-event satellite imagery is rapidly ingested to map final flood extents. Multi-agency teams use the GEWAS Community Dashboard to coordinate humanitarian aid delivery, focusing on restoring access to isolated boreholes and repairing critical road networks.</p>
+            </div>
+        </div>
+
+        <h2>Protecting the Vulnerable</h2>
+        <p>Our strategy specifically targets the protection of the <span class="highlight">156 schools and 34 health clinics</span> identified as being within critical flood exposure zones. By maintaining a live digital twin of these assets, GEWAS ensures that no facility is cut off without prior warning, allowing for the safe evacuation of children and the preservation of vital medical supplies.</p>
+
+    </div>
+</body>
+</html>

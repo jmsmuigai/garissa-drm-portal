@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interlayer Analysis Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+    <style>
+        :root {
+            --cyan: #00f3ff;
+            --pink: #ff007f;
+            --dark-bg: #02040a;
+            --panel-bg: rgba(10, 15, 30, 0.9);
+            --border-glow: rgba(0, 243, 255, 0.4);
+            --text-muted: #9ca3af;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyan);
+            text-transform: uppercase;
+            text-shadow: 0 0 10px var(--cyan);
+            margin-bottom: 30px;
+        }
+
+        .analysis-container {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+            height: calc(100% - 100px);
+        }
+
+        .control-panel, .results-panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .results-panel {
+            border-color: rgba(255, 0, 127, 0.4);
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.1);
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            margin-top: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            background: #090f1e;
+            border: 1px solid var(--border-glow);
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            font-family: 'Share Tech Mono', monospace;
+            outline: none;
+        }
+
+        button {
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--cyan);
+            color: var(--cyan);
+            padding: 15px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: auto;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        button:hover {
+            background: var(--cyan);
+            color: #000;
+            box-shadow: 0 0 15px var(--cyan);
+        }
+
+        #results-content {
+            font-family: 'Share Tech Mono', monospace;
+            flex: 1;
+            overflow-y: auto;
+            color: #e2e8f0;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        .highlight {
+            color: var(--pink);
+            font-weight: bold;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 0, 127, 0.3);
+            border-top: 4px solid var(--pink);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    </style>
+</head>
+<body>
+
+    <h1>🌐 Interlayer Spatial Analysis Hub</h1>
+
+    <div class="analysis-container">
+        <div class="control-panel">
+            <h2>⚙️ Select Datasets</h2>
+            
+            <div class="form-group">
+                <label for="layer-a">Target Infrastructure Layer (Points/Polygons):</label>
+                <select id="layer-a">
+                    <option value="schoolsData">🏫 Schools</option>
+                    <option value="healthData">🏥 Health Facilities</option>
+                    <option value="boreholesData">💧 Boreholes</option>
+                    <option value="waterPansData">🪣 Water Pans</option>
+                    <option value="campsData">⛺ IDP Camps</option>
+                    <option value="farmsData">🌾 Farms</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="layer-b">Hazard / Intersection Layer (Polygons):</label>
+                <select id="layer-b">
+                    <option value="floodExtentsData">🌊 Predicted Flood Extents</option>
+                    <option value="baselineFloodData">🌊 Baseline Flood (April 2024)</option>
+                    <option value="extremeZoneData">🟣 Extreme Risk Zone (~5.5km)</option>
+                    <option value="highZoneData">🔴 High Risk Zone (~500m)</option>
+                    <option value="tanaBuffer1kmData">🛑 Tana River 1km Buffer</option>
+                    <option value="tanaBuffer3kmData">🟡 Tana River 3km Buffer</option>
+                </select>
+            </div>
+
+            <button onclick="runAnalysis()">Execute Intersection Analysis</button>
+        </div>
+
+        <div class="results-panel">
+            <h2 style="color: var(--pink); border-color: rgba(255,0,127,0.2);">📊 Analysis Report</h2>
+            <div class="spinner" id="loading-spinner"></div>
+            <div id="results-content">Awaiting execution parameters...</div>
+        </div>
+    </div>
+
+    <script>
+        // Tell parent we are ready
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.parent) {
+                window.parent.postMessage({ type: 'map_ready' }, '*');
+            }
+        });
+
+        function runAnalysis() {
+            const layerAKey = document.getElementById('layer-a').value;
+            const layerBKey = document.getElementById('layer-b').value;
+            const resultsDiv = document.getElementById('results-content');
+            const spinner = document.getElementById('loading-spinner');
+
+            if (!window.parent) {
+                resultsDiv.innerHTML = `<span style="color: red;">[ERROR] This tool must run inside the master portal.</span>`;
+                return;
+            }
+
+            // Start UI loading
+            resultsDiv.innerHTML = "";
+            spinner.style.display = "block";
+
+            // Small timeout to let UI update before heavy computation
+            setTimeout(async () => {
+                try {
+                    // Fetch data if not present in parent
+                    let dataA = window.parent[layerAKey];
+                    let dataB = window.parent[layerBKey];
+
+                    if (!dataA || !dataA.features) {
+                        resultsDiv.innerHTML = `Fetching ${layerAKey} from disk...<br>`;
+                        const mapKeyToFile = {
+                            'schoolsData': 'schools_risk_assessed.geojson',
+                            'healthData': 'health_facilities_risk_assessed.geojson',
+                            'boreholesData': 'boreholes_risk_assessed.geojson',
+                            'waterPansData': 'water_pans_risk_assessed.geojson',
+                            'campsData': 'idp_camps.geojson',
+                            'farmsData': 'farms_at_risk.geojson',
+                            'floodExtentsData': 'flood_extents.geojson',
+                            'baselineFloodData': 'baseline_flood_2024.geojson',
+                            'extremeZoneData': 'extreme_risk_zone.geojson',
+                            'highZoneData': 'high_risk_zone.geojson',
+                            'tanaBuffer1kmData': 'tana_buffer_1km.geojson',
+                            'tanaBuffer3kmData': 'tana_buffer_3km.geojson'
+                        };
+                        const fileA = mapKeyToFile[layerAKey];
+                        if (fileA) {
+                            dataA = await fetch(fileA).then(r => r.json());
+                            window.parent[layerAKey] = dataA;
+                        }
+                    }
+
+                    if (!dataB || !dataB.features) {
+                        resultsDiv.innerHTML = `Fetching ${layerBKey} from disk...<br>`;
+                        const mapKeyToFile = {
+                            'schoolsData': 'schools_risk_assessed.geojson',
+                            'healthData': 'health_facilities_risk_assessed.geojson',
+                            'boreholesData': 'boreholes_risk_assessed.geojson',
+                            'waterPansData': 'water_pans_risk_assessed.geojson',
+                            'campsData': 'idp_camps.geojson',
+                            'farmsData': 'farms_at_risk.geojson',
+                            'floodExtentsData': 'flood_extents.geojson',
+                            'baselineFloodData': 'baseline_flood_2024.geojson',
+                            'extremeZoneData': 'extreme_risk_zone.geojson',
+                            'highZoneData': 'high_risk_zone.geojson',
+                            'tanaBuffer1kmData': 'tana_buffer_1km.geojson',
+                            'tanaBuffer3kmData': 'tana_buffer_3km.geojson'
+                        };
+                        const fileB = mapKeyToFile[layerBKey];
+                        if (fileB) {
+                            dataB = await fetch(fileB).then(r => r.json());
+                            window.parent[layerBKey] = dataB;
+                        }
+                    }
+
+                    if (!dataA || !dataB || !dataA.features || !dataB.features) {
+                        throw new Error("Data fetch failed or missing features.");
+                    }
+                    let totalA = dataA.features.length;
+                    let intersectedCount = 0;
+                    let exposedNames = [];
+
+                    for (let featA of dataA.features) {
+                        let isExposed = false;
+                        for (let featB of dataB.features) {
+                            if (turf.booleanIntersects(featA, featB)) {
+                                isExposed = true;
+                                break;
+                            }
+                        }
+                        if (isExposed) {
+                            intersectedCount++;
+                            let name = featA.properties.name || featA.properties.school_nam || featA.properties.health_fac || featA.properties.Name || "Unnamed Asset";
+                            exposedNames.push(name);
+                        }
+                    }
+
+                    spinner.style.display = "none";
+
+                    let percent = ((intersectedCount / totalA) * 100).toFixed(1);
+                    
+                    let report = `[+] ANALYSIS COMPLETE\n\n`;
+                    report += `Target Layer: ${document.getElementById('layer-a').options[document.getElementById('layer-a').selectedIndex].text}\n`;
+                    report += `Hazard Layer: ${document.getElementById('layer-b').options[document.getElementById('layer-b').selectedIndex].text}\n`;
+                    report += `Total Assets Evaluated: ${totalA}\n`;
+                    report += `Assets Exposed: <span class="highlight">${intersectedCount}</span> (${percent}%)\n\n`;
+                    
+                    if (intersectedCount > 0) {
+                        report += `[!] CRITICAL EXPOSURES DETECTED:\n`;
+                        for(let i=0; i<Math.min(10, exposedNames.length); i++) {
+                            report += `  - ${exposedNames[i]}\n`;
+                        }
+                        if (exposedNames.length > 10) {
+                            report += `  - ...and ${exposedNames.length - 10} more.\n`;
+                        }
+                    } else {
+                        report += `[✓] No assets exposed in this intersection scenario.\n`;
+                    }
+
+                    resultsDiv.innerHTML = report;
+
+                } catch (err) {
+                    spinner.style.display = "none";
+                    resultsDiv.innerHTML = `<span style="color: red;">[FATAL] Analysis Kernel Panic:\n${err.message}</span>`;
+                }
+            }, 100);
+        }
+    </script>
+</body>
+</html>

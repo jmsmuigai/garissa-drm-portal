@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- pycsw 2.2.0 -->
+<csw:GetRecordByIdResponse xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dct="http://purl.org/dc/terms/" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml" xmlns:ows="http://www.opengis.net/ows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/cat/csw/2.0.2 http://schemas.opengis.net/csw/2.0.2/CSW-discovery.xsd">
+  <metadata xsi:noNamespaceSchemaLocation="http://www.fgdc.gov/metadata/fgdc-std-001-1998.xsd">
+    <idinfo>
+      <datasetid>fa100a4a-ee62-11e9-83d8-0242ac150005</datasetid>
+      <citation>
+        <citeinfo>
+          <title>Kenya Roads, Tracks and Trials (Openstreetmap)</title>
+          <publinfo>
+            <publish>wraadmin</publish>
+          </publinfo>
+          <origin>wraadmin</origin>
+          <geoform>vector</geoform>
+          <onlink></onlink>
+          <onlink type="Kenya Roads">https://spatial.wraisc.org/geoserver/wms?layers=geonode%3Agis_osm_roads_free_1&amp;service=WMS&amp;format=image%2Fjpeg&amp;request=GetMap&amp;height=550&amp;width=448&amp;bbox=33.908051500000000%2C-4.730502300000000%2C42.076091300000000%2C5.280625400000000&amp;srs=EPSG%3A4326</onlink>
+          <onlink type="Kenya Roads">https://spatial.wraisc.org/geoserver/wms?layers=geonode%3Agis_osm_roads_free_1&amp;service=WMS&amp;format=application%2Fpdf&amp;request=GetMap&amp;height=550&amp;width=448&amp;bbox=33.908051500000000%2C-4.730502300000000%2C42.076091300000000%2C5.280625400000000&amp;srs=EPSG%3A4326</onlink>
+          <onlink type="Kenya Roads">https://spatial.wraisc.org/geoserver/wms?layers=geonode%3Agis_osm_roads_free_1&amp;service=WMS&amp;format=image%2Fpng&amp;request=GetMap&amp;height=550&amp;width=448&amp;bbox=33.908051500000000%2C-4.730502300000000%2C42.076091300000000%2C5.280625400000000&amp;srs=EPSG%3A4326</onlink>
+          <onlink type="Kenya Roads">https://spatial.wraisc.org/geoserver/wfs?outputFormat=SHAPE-ZIP&amp;service=WFS&amp;srs=EPSG%3A4326&amp;request=GetFeature&amp;format_options=charset%3AUTF-8&amp;typename=geonode%3Agis_osm_roads_free_1&amp;version=1.0.0</onlink>
+          <onlink type="Kenya Roads">https://spatial.wraisc.org/geoserver/wfs?outputFormat=gml2&amp;service=WFS&amp;srs=EPSG%3A4326&amp;request=GetFeature&amp;typename=geonode%3Agis_osm_roads_free_1&amp;version=1.0.0</onlink>
+          <onlink type="Kenya Roads">https://spatial.wraisc.org/geoserver/wfs?outputFormat=text%2Fxml%3B+subtype%3Dgml%2F3.1.1&amp;service=WFS&amp;srs=EPSG%3A4326&amp;request=GetFeature&amp;typename=geonode%3Agis_osm_roads_free_1&amp;version=1.0.0</onlink>
+          <onlink type="Kenya Roads">https://spatial.wraisc.org/geoserver/wfs?outputFormat=csv&amp;service=WFS&amp;srs=EPSG%3A4326&amp;request=GetFeature&amp;typename=geonode%3Agis_osm_roads_free_1&amp;version=1.0.0</onlink>
+          <onlink type="Kenya Roads">https://spatial.wraisc.org/geoserver/wfs?outputFormat=excel&amp;service=WFS&amp;srs=EPSG%3A4326&amp;request=GetFeature&amp;typename=geonode%3Agis_osm_roads_free_1&amp;version=1.0.0</onlink>
+          <onlink type="Kenya Roads">https://spatial.wraisc.org/geoserver/wfs?srsName=EPSG%3A4326&amp;outputFormat=json&amp;service=WFS&amp;srs=EPSG%3A4326&amp;request=GetFeature&amp;typename=geonode%3Agis_osm_roads_free_1&amp;version=1.0.0</onlink>
+          <onlink type="Kenya Roads">https://spatial.wraisc.org/geoserver/wms/kml?layers=geonode%3Agis_osm_roads_free_1&amp;mode=download</onlink>
+          <onlink type="Kenya Roads">https://spatial.wraisc.org/geoserver/wms/kml?layers=geonode%3Agis_osm_roads_free_1&amp;mode=refresh</onlink>
+          <onlink type="Kenya Roads">https://spatial.wraisc.org/geoserver/ows?layers=geonode:gis_osm_roads_free_1&amp;version=1.1.1&amp;request=GetMap&amp;service=WMS&amp;format=image/png8</onlink>
+          <onlink type="Kenya Roads">https://spatial.wraisc.org/geoserver/wms?request=GetLegendGraphic&amp;format=image/png&amp;WIDTH=20&amp;HEIGHT=20&amp;LAYER=geonode:gis_osm_roads_free_1&amp;legend_options=fontAntiAliasing:true;fontSize:12;forceLabels:on</onlink>
+          <onlink type="OGC WMS: geonode Service">https://spatial.wraisc.org/geoserver/ows</onlink>
+          <onlink type="OGC WFS: geonode Service">https://spatial.wraisc.org/geoserver/wfs</onlink>
+          <onlink type="Kenya Roads">https://spatial.wraisc.org/geoserver/gwc/service/gmaps?layers=geonode:gis_osm_roads_free_1&amp;zoom={z}&amp;x={x}&amp;y={y}&amp;format=image/png8</onlink>
+          <onlink type="Kenya Roads">https://spatial.wraisc.org/download/66</onlink>
+          <onlink type="Web address (URL)">https://spatial.wraisc.org/layers/geonode:gis_osm_roads_free_1</onlink>
+          <onlink type="Kenya Roads">https://spatial.wraisc.org/uploaded/thumbs/layer-fa100a4a-ee62-11e9-83d8-0242ac150005-thumb.png</onlink>
+        </citeinfo>
+      </citation>
+      <accconst></accconst>
+      <descript>
+        <abstract>Data from the OpenStreetMap (OSM) project (www.openstreetmap.org). Obtained from geofabrik.de. Detailed metadata available from http://download.geofabrik.de/osm-data-in-gis-formats-free.pdf</abstract>
+      </descript>
+      <spdom>
+        <bounding>
+          <westbc>33.9080515</westbc>
+          <eastbc>42.0760913</eastbc>
+          <northbc>5.2806254</northbc>
+          <southbc>-4.7305023</southbc>
+        </bounding>
+      </spdom>
+      <datacred>wraadmin</datacred>
+      <spdoinfo>
+        <direct>dataset</direct>
+      </spdoinfo>
+    </idinfo>
+    <distinfo>
+      <stdorder>
+        <digform>
+          <digtinfo>
+            <formname>vector</formname>
+          </digtinfo>
+        </digform>
+      </stdorder>
+    </distinfo>
+    <lineage>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <title></title>
+          </citeinfo>
+        </srccite>
+      </srcinfo>
+    </lineage>
+    <metainfo>
+      <metd>2019-10-14T09:14:00Z</metd>
+    </metainfo>
+  </metadata>
+</csw:GetRecordByIdResponse>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garissa DRM - 3D El Niño Advisory Dashboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0f1d, #1a253c);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #39ff14;
+        }
+
+        nav h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #39ff14;
+        }
+
+        /* 3D Container */
+        .container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header-section h2 {
+            font-size: 3rem;
+            text-shadow: 0 0 15px #39ff14;
+            margin-bottom: 10px;
+        }
+
+        .header-section p {
+            font-size: 1.2rem;
+            color: #b0c4de;
+        }
+
+        /* Grid Layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        /* 3D Glassmorphism Cards */
+        .card-3d {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-10px) rotateX(2deg) rotateY(-2deg);
+            box-shadow: 0 20px 40px rgba(0, 243, 255, 0.3);
+        }
+
+        .card-3d h3 {
+            color: #00f3ff;
+            margin-top: 0;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        /* 3D Table */
+        .table-3d {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        .table-3d th, .table-3d td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .table-3d th {
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffd700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .table-3d tr {
+            background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .table-3d tr:hover {
+            transform: scale(1.02);
+            background: rgba(57, 255, 20, 0.1);
+            cursor: pointer;
+        }
+
+        .status-bad { color: #ff007f; font-weight: bold; }
+        .status-good { color: #39ff14; font-weight: bold; }
+        .status-warn { color: #fdb863; font-weight: bold; }
+
+        /* Image Styling */
+        .card-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        /* Modal/Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a253c, #0a0f1d);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 600px;
+            border: 2px solid #00f3ff;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 243, 255, 0.5);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: #ff007f;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-action {
+            background: linear-gradient(45deg, #39ff14, #00f3ff);
+            border: none;
+            padding: 10px 25px;
+            color: #000;
+            font-weight: 800;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .btn-action:hover {
+            box-shadow: 0 0 15px #39ff14;
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>GEWAS | Garissa DRM</h1>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="elnino.html">Live Telemetry</a>
+            <a href="#">El Niño Advisory (Current)</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header-section">
+            <h2>🌍 El Niño Agricultural & Health Advisory</h2>
+            <p>Integrated Data from ECMWF, GFS, and Kenya Met (KMD) Models</p>
+        </div>
+
+        <div class="dashboard-grid">
+            
+            <!-- Agricultural Advisory Card -->
+            <div class="card-3d">
+                <h3>🌽 Crop Yield & Market Predictions</h3>
+                <img src="assets/images/thriving_maize_farm_1782468305479.png" class="card-img" alt="Maize Farm">
+                <table class="table-3d">
+                    <tr>
+                        <th>Crop Type</th>
+                        <th>Forecast</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr onclick="showPopup('Maize & Fruit Trees', 'Plant in high density under irrigation between Sept 5 - Sept 15. Expected 1200mm rain will produce massive yields to last through La Niña.')">
+                        <td>Maize & Fruits</td>
+                        <td class="status-good">MASSIVE YIELD</td>
+                        <td>PLANT EARLY</td>
+                    </tr>
+                    <tr onclick="showPopup('Tomatoes & Potatoes (Waru)', 'Waterlogged fields and fungal diseases will decimate fields near River Tana. Prices will rise to stratosphere.')">
+                        <td>Tomatoes / Waru</td>
+                        <td class="status-bad">DECIMATED</td>
+                        <td>AVOID RIVER BANKS</td>
+                    </tr>
+                    <tr onclick="showPopup('Vegetables (Terere, Cabbages, Managu)', 'Relentless supply with low demand. Prices will crash from Oct to May.')">
+                        <td>Leafy Vegetables</td>
+                        <td class="status-warn">MARKET CRASH</td>
+                        <td>DIVERSIFY</td>
+                    </tr>
+                    <tr onclick="showPopup('Beans', 'Heavy rains and fungal diseases will devastate early plantings. Wait out Oct/Nov rains and plant in December.')">
+                        <td>Beans</td>
+                        <td class="status-bad">FUNGAL RISK</td>
+                        <td>DELAY TO DEC</td>
+                    </tr>
+                    <tr onclick="showPopup('Wheat', 'Local wheat (Nakuru, Narok) will mint millionaires due to global El Niño drought affecting Russian/Australian supply.')">
+                        <td>Wheat</td>
+                        <td class="status-good">HIGH PROFITS</td>
+                        <td>MAXIMIZE</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- River Flood & Health Card -->
+            <div class="card-3d">
+                <h3>🌊 River Tana & Laghas Flood Mapping</h3>
+                <img src="assets/images/flooded_laghas_tomatoes_1782468341042.png" class="card-img" alt="Flooded Farm">
+                <p><strong>KMD Warning:</strong> Seven Folk Dams expected to spill. Within hours, water will flood Garissa and Tana River Counties, damaging farms within a 500m buffer of the river.</p>
+                
+                <h3 style="margin-top: 30px; color: #ff007f;">🦠 Public Health Alert</h3>
+                <img src="assets/images/health_advisory_cholera_1782468381894.png" class="card-img" alt="Health Alert Drone">
+                <p><strong>Risk Level: CRITICAL</strong></p>
+                <p>Stagnant water in Laghas and Tana floodplains will trigger mosquito breeding and waterborne disease outbreaks (Cholera, Malaria, Typhoid).</p>
+                <button class="btn-action" onclick="showPopup('Ministry of Health Directives', '1. Dispatch Cholera kits to all dispensaries in Lagdera and Fafi.<br>2. Distribute treated mosquito nets.<br>3. Evacuate populations within 500m of the Tana River.')">View Action Plan</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2 id="modalTitle" style="color: #ffd700;">Title</h2>
+            <p id="modalBody" style="font-size: 1.2rem; line-height: 1.6;">Body content goes here.</p>
+        </div>
+    </div>
+
+    <script>
+        function showPopup(title, body) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalBody').innerHTML = body;
+            document.getElementById('infoModal').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+
+        // Close when clicking outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('infoModal')) {
+                closePopup();
+            }
+        }
+    </script>
+</body>
+</html>

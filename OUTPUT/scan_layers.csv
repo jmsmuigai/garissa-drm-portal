@@ -1,0 +1,6 @@
+path,type,format,crs,features,bounds
+/Users/james/Library/CloudStorage/GoogleDrive-jmsmuigai@gmail.com/My Drive/GARISSADRM/flood_extents.shp,vector,.shp,EPSG:4326,Unknown,Unknown
+/Users/james/Library/CloudStorage/GoogleDrive-jmsmuigai@gmail.com/My Drive/GARISSADRM/garissa_county.shp,vector,.shp,EPSG:4326,Unknown,Unknown
+/Users/james/Library/CloudStorage/GoogleDrive-jmsmuigai@gmail.com/My Drive/GARISSADRM/hotosm_buildings.shp,vector,.shp,EPSG:4326,Unknown,Unknown
+/Users/james/Library/CloudStorage/GoogleDrive-jmsmuigai@gmail.com/My Drive/GARISSADRM/Rivers.gpkg,vector,.gpkg,EPSG:4326,Unknown,Unknown
+/Users/james/Library/CloudStorage/GoogleDrive-jmsmuigai@gmail.com/My Drive/GARISSADRM/Intersected Flood extent.gpkg,vector,.gpkg,EPSG:4326,Unknown,Unknown

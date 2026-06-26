@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Garissa DRM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@600;800;900&family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #020510;
+            --text-main: #f0f4ff;
+            --text-muted: #8899bb;
+            --cyan: #00f3ff;
+            --pink: #ff007f;
+            --purple: #c800ff;
+            --border-glow: rgba(0, 243, 255, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: transparent;
+            color: var(--text-main);
+            margin: 0;
+            padding: 30px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(8, 14, 32, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(0, 243, 255, 0.05);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 32px;
+            color: var(--cyan);
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+            border-bottom: 2px solid rgba(0, 243, 255, 0.2);
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 26px;
+            color: var(--pink);
+            margin-top: 35px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--purple));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            background: rgba(0, 243, 255, 0.05);
+            border-color: rgba(0, 243, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.1);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            color: var(--text-main);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .quote-block {
+            background: rgba(200, 0, 255, 0.05);
+            border-left: 4px solid var(--purple);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 30px 0;
+            font-style: italic;
+            font-size: 18px;
+            color: #d8b4ff;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0, 243, 255, 0.2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>About Garissa DRM & GEWAS</h1>
+        
+        <p>The <span class="highlight">Garissa County Disaster Risk Management (DRM) Portal</span> and the <span class="highlight">Garissa Early Warning System (GEWAS)</span> represent a paradigm shift in how we approach disaster resilience. Born out of the necessity to protect lives, livelihoods, and critical infrastructure from increasingly volatile climatic extremes, GEWAS serves as the digital nerve center for disaster preparedness in Garissa County.</p>
+
+        <p>Our mandate is clear: to transition from reactive emergency response to <span class="highlight">proactive, intelligence-driven disaster anticipation</span>. By leveraging cutting-edge satellite telemetry, hydrological modeling, and community-based participatory mapping, we provide decision-makers and citizens with the critical lead time required to save lives.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Our Vision</h3>
+                <p>To create a resilient Garissa County where communities are empowered with actionable intelligence, seamlessly anticipating and withstanding natural hazards, and where disaster-induced loss of life and livelihoods is entirely eliminated.</p>
+            </div>
+            <div class="card">
+                <h3>Our Mission</h3>
+                <p>To deploy state-of-the-art multi-hazard early warning systems, integrate deep community knowledge, and foster strategic partnerships that ensure rapid, effective, and empathetic disaster mitigation, response, and recovery across all sub-counties.</p>
+            </div>
+        </div>
+
+        <div class="quote-block">
+            "We do not inherit the land from our ancestors, we borrow it from our children. Protecting Garissa from climatic extremes is our duty to the future."
+        </div>
+
+        <h2>The GEWAS Architecture</h2>
+        <p>GEWAS (Garissa Early Warning System) is built on a foundation of spatial data infrastructure (SDI) and artificial intelligence. It integrates:</p>
+        <ul style="color: var(--text-muted); font-size: 16px; line-height: 1.8;">
+            <li><span class="highlight">Earth Observation Data:</span> Live feeds from Sentinel and MODIS satellites via Google Earth Engine to track flood extents and vegetation health.</li>
+            <li><span class="highlight">Hydrological Telemetry:</span> Real-time monitoring of River Tana levels and the Masinga Dam cascade spillway.</li>
+            <li><span class="highlight">Vulnerability Mapping:</span> High-resolution mapping of exposed populations, schools, health clinics, and vital boreholes.</li>
+            <li><span class="highlight">Community Intelligence:</span> Integrating local knowledge and participatory mapping to ensure solutions are grounded in the reality of Garissa's people.</li>
+        </ul>
+
+        <p>Together, these components create a 'Digital Twin' of Garissa County's risk landscape, allowing us to model scenarios like the Super El Niño 2026 and act before the waters rise.</p>
+    </div>
+</body>
+</html>

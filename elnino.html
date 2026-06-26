@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌩️ El Niño Early Warning - Garissa County</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@600;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #01040a;
+            --bg-card: rgba(10, 18, 38, 0.85);
+            --border-glow: rgba(0, 150, 255, 0.4);
+            --text-main: #f0f4ff;
+            --text-muted: #8899bb;
+            --cyan: #00f3ff;
+            --pink: #ff007f;
+            --lime: #39ff14;
+            --emerald: #10d98c;
+            --red: #ff3a3a;
+            --orange: #ff8c00;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- RAIN ANIMATION (CSS ONLY) --- */
+        .rain-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .drop {
+            position: absolute;
+            bottom: 100%;
+            width: 1px;
+            height: 100px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(0, 243, 255, 0.6));
+            animation: drop linear infinite;
+        }
+
+        @keyframes drop {
+            0% { transform: translateY(0) scaleY(1); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh) scaleY(0.5); opacity: 0; }
+        }
+
+        /* Lightning effect */
+        .lightning {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.0);
+            pointer-events: none;
+            z-index: 1;
+            animation: lightning-flash 15s infinite;
+        }
+
+        @keyframes lightning-flash {
+            0%, 95%, 98% { background: rgba(255, 255, 255, 0); }
+            96% { background: rgba(255, 255, 255, 0.1); }
+            97% { background: rgba(255, 255, 255, 0); }
+            99% { background: rgba(0, 243, 255, 0.2); }
+            100% { background: rgba(255, 255, 255, 0); }
+        }
+
+        /* --- MAIN LAYOUT --- */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(8, 14, 32, 0.9);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 15px 25px;
+            box-shadow: 0 0 30px rgba(0, 150, 255, 0.2);
+        }
+
+        .header-left h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            margin: 0;
+            color: var(--cyan);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-left p {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--orange);
+            margin: 5px 0 0 0;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--cyan);
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background: var(--cyan);
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+        }
+        
+        .btn.danger {
+            background: rgba(255, 0, 0, 0.1);
+            border-color: var(--red);
+            color: var(--red);
+        }
+        .btn.danger:hover {
+            background: var(--red);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+        }
+
+        /* --- GRID LAYOUT --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .card.wide { grid-column: span 2; }
+        .card.full { grid-column: span 3; }
+        
+        .card.alert {
+            border-color: var(--red);
+            background: rgba(40, 5, 10, 0.85);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.15);
+        }
+
+        .card-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            color: var(--cyan);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+        
+        .alert .card-title { color: var(--red); border-bottom-color: rgba(255, 0, 0, 0.3); }
+
+        /* --- WEATHER WIDGETS --- */
+        .weather-container { display: flex; flex-direction: column; gap: 15px; }
+        
+        .live-weather {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(0,0,0,0.5);
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .live-temp { font-size: 36px; font-weight: 900; color: var(--orange); font-family: 'Orbitron', sans-serif; }
+        
+        /* --- TIMELINE --- */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .tl-item {
+            display: flex;
+            gap: 15px;
+            background: rgba(0,0,0,0.4);
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid var(--cyan);
+        }
+
+        .tl-item.past { opacity: 0.6; border-left-color: var(--text-muted); }
+        .tl-item.current { border-left-color: var(--red); background: rgba(255,0,0,0.1); }
+        .tl-item.future { border-left-color: var(--orange); }
+
+        .tl-date {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 12px;
+            color: var(--cyan);
+            min-width: 90px;
+        }
+        .current .tl-date { color: var(--red); font-weight: bold; }
+        .future .tl-date { color: var(--orange); }
+
+        .tl-content { flex: 1; font-size: 13px; line-height: 1.4; }
+        
+        /* --- MESSAGES --- */
+        .msg-box {
+            background: rgba(255, 140, 0, 0.1);
+            border-left: 4px solid var(--orange);
+            padding: 12px 15px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        .msg-box.red { background: rgba(255, 0, 0, 0.1); border-left-color: var(--red); }
+        .msg-box.green { background: rgba(0, 255, 100, 0.1); border-left-color: var(--emerald); }
+        
+        /* --- IFRAMES & EMBEDS --- */
+        .embed-wrapper {
+            width: 100%;
+            height: 350px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #000;
+        }
+        
+        .embed-wrapper iframe { width: 100%; height: 100%; border: none; }
+        
+        .img-wrapper {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.5);
+            min-height: 200px;
+        }
+        
+        .img-wrapper img { max-width: 100%; height: auto; display: block; }
+
+        @media (max-width: 1000px) {
+            .grid-container { grid-template-columns: 1fr 1fr; }
+            .card.full { grid-column: span 2; }
+        }
+        @media (max-width: 700px) {
+            .grid-container { grid-template-columns: 1fr; }
+            .card.wide, .card.full { grid-column: span 1; }
+            .header { flex-direction: column; gap: 15px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CSS RAIN EFFECTS -->
+    <div class="rain-container" id="rain-container"></div>
+    <div class="lightning"></div>
+
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-left">
+                <h1>🌩️ SUPER EL NIÑO WATCH 2026</h1>
+                <p>Garissa County Active Threat Monitoring & Early Warning</p>
+            </div>
+            <div class="header-actions">
+                <a href="index.html" class="btn">🔙 Return to Main Portal</a>
+                <button class="btn danger" onclick="broadcastWarning()">📡 Broadcast Warning</button>
+                <button class="btn" onclick="window.print()">🖨️ Print Report</button>
+            </div>
+        </header>
+
+        <!-- MAIN GRID -->
+        <div class="grid-container">
+
+            <!-- WEATHER & PREDICTIONS (Left Col) -->
+            <div class="card">
+                <div class="card-title">☁️ Live Weather & Outlook</div>
+                
+                <div class="live-weather">
+                    <div>
+                        <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Current (Garissa)</div>
+                        <div class="live-temp" id="live-temp">--°C</div>
+                        <div id="live-desc" style="font-size: 13px;">Loading...</div>
+                    </div>
+                    <div style="font-size: 40px;" id="live-icon">🌦️</div>
+                </div>
+
+                <div style="margin-top: 10px;">
+                    <div style="font-family: 'Orbitron', sans-serif; font-size: 12px; color: var(--cyan); margin-bottom: 5px;">ICPAC OND 2026 FORECAST</div>
+                    <div style="font-size: 12px; color: #ffcc44; background: rgba(255,200,0,0.1); padding: 8px; border-radius: 6px; border: 1px solid rgba(255,200,0,0.3);">
+                        <strong>CONFIDENCE: 92%</strong><br>
+                        "Enhanced rainfall expected over eastern Kenya. Above-normal precipitation highly likely (top decile)."
+                    </div>
+                </div>
+                
+                <div style="margin-top: 10px;">
+                    <div style="font-family: 'Orbitron', sans-serif; font-size: 12px; color: var(--cyan); margin-bottom: 5px;">KMD BULLETIN</div>
+                    <a href="#" style="color: var(--cyan); font-size: 12px;">Link: Kenya Met Dept Special Advisory #4</a>
+                </div>
+            </div>
+
+            <!-- RIVER TANA FLOOD PREDICTION (Center/Right Col) -->
+            <div class="card wide alert">
+                <div class="card-title">🌊 River Tana Flood Prediction Engine</div>
+                
+                <p style="font-size: 13px; color: var(--text-main); margin-bottom: 10px;">
+                    Based on historical analog years (1997, 2006, 2015, 2023) and current Masinga/Kiambere dam telemetry, the AI prediction model estimates:
+                </p>
+
+                <div class="timeline">
+                    <div class="tl-item past">
+                        <div class="tl-date">OCT 01-15</div>
+                        <div class="tl-content"><strong>Catchment Saturation:</strong> Heavy rains in Mt. Kenya / Aberdares. Seven Forks dams filling.</div>
+                    </div>
+                    <div class="tl-item current">
+                        <div class="tl-date">OCT 22-28</div>
+                        <div class="tl-content"><strong>EXPECTED FLOOD ONSET (GARISSA):</strong> Masinga spillway cascade reaches Garissa. River breaks banks at traditional weak points (Mororo, Ziwani).</div>
+                    </div>
+                    <div class="tl-item future">
+                        <div class="tl-date">NOV 05-20</div>
+                        <div class="tl-content"><strong>EXPECTED FLOOD PEAK:</strong> Maximum inundation extent. Widespread displacement in Fafi, Lagdera, and Garissa township.</div>
+                    </div>
+                    <div class="tl-item future">
+                        <div class="tl-date">DEC 10-20</div>
+                        <div class="tl-content"><strong>Recession Phase:</strong> Waters begin to recede. High risk of waterborne diseases (Cholera) and vector-borne diseases (RVF).</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LIVE SATELLITE/RADAR MAP -->
+            <div class="card wide">
+                <div class="card-title">🛰️ Live Precipitation Radar (Windy)</div>
+                <div class="embed-wrapper">
+                    <!-- Windy.com embed centered on Garissa -->
+                    <iframe src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=km/h&zoom=6&overlay=rain&product=ecmwf&level=surface&lat=-0.45&lon=39.65" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- AI WARNING MESSAGES -->
+            <div class="card">
+                <div class="card-title">🚨 Automated Warning Drafts</div>
+                <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 10px;">Ready for dissemination via SMS/WhatsApp to Sub-County Administrators.</p>
+                
+                <div class="msg-box red">
+                    <strong>[RED] GARISSA TOWN & ENVIRONS</strong><br>
+                    URGENT: River Tana flood expected by Oct 24. Move families and assets from riverbanks to higher ground immediately. Evacuation centers: Garissa Stadium.
+                </div>
+                
+                <div class="msg-box">
+                    <strong>[AMBER] FAFI & LAGDERA</strong><br>
+                    Laghas are filling. Flash floods expected on roads. Move livestock away from seasonal riverbeds to designated high rangelands.
+                </div>
+                
+                <div class="msg-box green">
+                    <strong>[GREEN] IJARA (Inland Areas)</strong><br>
+                    Normal rains expected. Ensure water pans are desilted to capture runoff. Monitor local advisories.
+                </div>
+            </div>
+
+            <!-- INFOGRAPHICS / VISUALS -->
+            <div class="card full">
+                <div class="card-title">📊 Visual Intelligence & Analytics (Generated)</div>
+                <p style="font-size: 12px; color: var(--text-muted);">Auto-generated graphics comparing 2026 rainfall anomaly to historical El Niño events.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+                    
+                    <div class="img-wrapper">
+                        <!-- Generated chart -->
+                        <div style="text-align:center;">
+                            <img src="OUTPUT/rainfall_anomaly.png" alt="Rainfall Anomaly Chart" style="max-width: 100%; max-height: 250px; object-fit: contain;">
+                            <br>
+                            <span style="font-family:'Orbitron'; font-size:12px; color:var(--cyan); margin-top: 10px; display: inline-block;">Rainfall Anomaly 1997-2026</span>
+                        </div>
+                    </div>
+                    
+                    <div class="img-wrapper">
+                        <!-- Generated diagram -->
+                        <div style="text-align:center;">
+                            <img src="OUTPUT/inundation_heatmap.png" alt="Inundation Heatmap" style="max-width: 100%; max-height: 250px; object-fit: contain;">
+                            <br>
+                            <span style="font-family:'Orbitron'; font-size:12px; color:var(--cyan); margin-top: 10px; display: inline-block;">Projected Inundation Heatmap</span>
+                        </div>
+                    </div>
+                    
+                    <div class="img-wrapper">
+                        <!-- Generated infographic -->
+                        <div style="text-align:center;">
+                            <img src="OUTPUT/healthcare_impact.png" alt="Healthcare Impact" style="max-width: 100%; max-height: 250px; object-fit: contain;">
+                            <br>
+                            <span style="font-family:'Orbitron'; font-size:12px; color:var(--cyan); margin-top: 10px; display: inline-block;">Healthcare Access Impact</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Generate CSS rain
+        function createRain() {
+            const container = document.getElementById('rain-container');
+            const dropCount = 100;
+            for (let i = 0; i < dropCount; i++) {
+                let drop = document.createElement('div');
+                drop.classList.add('drop');
+                drop.style.left = Math.random() * 100 + 'vw';
+                drop.style.animationDuration = (Math.random() * 0.5 + 0.5) + 's';
+                drop.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(drop);
+            }
+        }
+        createRain();
+
+        // Fetch Live Weather (Garissa) from local telemetry agent output
+        async function fetchLiveWeather() {
+            try {
+                // Fetch the JSON generated by our Python WeatherSyncAgent
+                const res = await fetch('OUTPUT/live_weather.json');
+                if(res.ok) {
+                    const data = await res.json();
+                    document.getElementById('live-temp').textContent = Math.round(data.temperature) + '°C';
+                    document.getElementById('live-desc').textContent = data.status.toUpperCase() + ' | Humidity: ' + data.humidity + '% | Rain: ' + data.precipitation + 'mm';
+                } else {
+                    document.getElementById('live-desc').textContent = 'Awaiting telemetry...';
+                }
+            } catch(e) {
+                console.error("Weather fetch failed", e);
+            }
+        }
+        
+        // Fetch immediately, then update every 60 seconds
+        fetchLiveWeather();
+        setInterval(fetchLiveWeather, 60000);
+
+        function broadcastWarning() {
+            alert("⚠️ INITIATING BROADCAST PROTOCOL:\n\nSending warning messages to 1,245 registered sub-county administrators, chiefs, and community health volunteers via SMS and WhatsApp API...\n\n(Simulated)");
+        }
+    </script>
+</body>
+</html>

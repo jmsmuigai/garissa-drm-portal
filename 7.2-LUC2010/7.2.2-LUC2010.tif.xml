@@ -1,0 +1,3 @@
+<?xml version="1.0"?>
+<!--<!DOCTYPE metadata SYSTEM "http://www.esri.com/metadata/esriprof80.dtd">-->
+<metadata xml:lang="en"><Esri><MetaID>{A9D95A73-FD58-490C-8353-4305C03C9A87}</MetaID><CreaDate>20120501</CreaDate><CreaTime>17502400</CreaTime><SyncOnce>TRUE</SyncOnce><DataProperties><lineage><Process ToolSource="C:\Program Files (x86)\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateStatistics" Date="20120501" Time="175024">CalculateStatistics G:\Ahmad\Kenya_WaterResources_Project\Database\001_Landsat_TM\0012_Landsat-TM_2010\Mosaic\Kenya\KenyaLUC2010_Reclass_tif.tif 1 1 # G:\Ahmad\Kenya_WaterResources_Project\Database\001_Landsat_TM\0012_Landsat-TM_2010\Mosaic\Kenya\KenyaLUC2010_Reclass_tif.tif</Process></lineage></DataProperties></Esri></metadata>

@@ -1,0 +1,33 @@
+# Secrets and Credentials
+.env
+*.pem
+credentials.json
+google-services.json
+client_secrets.json
+
+# Virtual Environments
+venv/
+env/
+.venv/
+__pycache__/
+*.pyc
+
+# Massive Geospatial Files (GitHub 100MB Limit)
+*.tif
+*.gpkg
+*.dbf
+*.rrd
+*.ovr
+*.tfw
+*.aux.xml
+GEE_UPLOAD_READY/*.geojson
+
+# Ignore massive output datasets (keep the HTML/JS/CSS and small GeoJSONs)
+OUTPUT/*.tif
+OUTPUT/*.gpkg
+OUTPUT/*.dbf
+OUTPUT/flood_extents.geojson
+
+# OS Files
+.DS_Store
+Thumbs.db

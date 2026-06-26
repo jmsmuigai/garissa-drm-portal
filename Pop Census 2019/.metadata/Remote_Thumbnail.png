@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE ServiceExceptionReport SYSTEM "https://spatial.wraisc.org/schemas/wms/1.1.1/WMS_exception_1_1_1.dtd"> <ServiceExceptionReport version="1.1.1" >   <ServiceException code="MissingOrInvalidParameter">
+      Missing or invalid requested map size. Parameters WIDTH and HEIGHT shall be present and be integers &gt; 0. Got WIDTH=0, HEIGHT=0
+</ServiceException></ServiceExceptionReport>
