@@ -104,77 +104,6 @@ def get_leaflet_template(title, caption, download_filename, default_layers_json,
             height: 100%;
             width: 100%;
             z-index: 1;
-            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s ease;
-        }}
-
-        /* 3D TACTICAL VIEW CLASS */
-        .map-3d {{
-            transform: rotateX(var(--tilt, 50deg)) rotateZ(var(--rotate, -10deg)) scale(1.02);
-            box-shadow: 0 50px 100px rgba(0,0,0,0.9), 0 0 50px rgba(0, 243, 255, 0.25);
-            border: 2px solid var(--cyan) !important;
-            border-radius: 16px;
-        }}
-
-        .map-3d-active-banner {{
-            position: absolute;
-            top: 85px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 0, 127, 0.25);
-            border: 1px solid var(--pink);
-            color: var(--pink);
-            padding: 4px 15px;
-            border-radius: 20px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            z-index: 1000;
-            pointer-events: none;
-            display: none;
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
-            animation: pulse-glow-text 1.5s infinite alternate;
-        }}
-
-        @keyframes pulse-glow-text {{
-            0% {{ opacity: 0.6; box-shadow: 0 0 5px rgba(255, 0, 127, 0.2); }}
-            100% {{ opacity: 1; box-shadow: 0 0 15px rgba(255, 0, 127, 0.5); }}
-        }}
-
-        /* SCANLINE EFFECTS */
-        .scanlines {{
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 243, 255, 0.05) 50%);
-            background-size: 100% 4px;
-            z-index: 999;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }}
-
-        .scanlines.active {{
-            opacity: 1;
-        }}
-
-        /* RADAR SWEEP EFFECT */
-        .radar-sweep {{
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 160vmax; height: 160vmax;
-            margin-left: -80vmax; margin-top: -80vmax;
-            background: conic-gradient(from 0deg, rgba(0, 243, 255, 0.12) 0deg, rgba(0, 243, 255, 0) 120deg, rgba(0, 243, 255, 0) 360deg);
-            border-radius: 50%;
-            z-index: 2;
-            pointer-events: none;
-            animation: radar-sweep-anim 10s linear infinite;
-            display: none;
-        }}
-
-        @keyframes radar-sweep-anim {{
-            0% {{ transform: rotate(0deg); }}
-            100% {{ transform: rotate(360deg); }}
         }}
 
         /* GLASS PANELS */
@@ -294,59 +223,6 @@ def get_leaflet_template(title, caption, download_filename, default_layers_json,
             background: var(--cyan);
             color: #02040a;
             box-shadow: 0 0 10px var(--cyan);
-        }}
-
-        /* 3D TILT CONTROLS */
-        .tilt-controls-panel {{
-            position: absolute;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            display: none;
-            flex-direction: row;
-            gap: 20px;
-            width: 90%;
-            max-width: 450px;
-            align-items: center;
-            background: rgba(10, 15, 30, 0.9);
-            border: 1px solid var(--border-glow);
-            border-radius: 12px;
-            padding: 10px 20px;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
-        }}
-
-        .slider-group {{
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex: 1;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 10px;
-            color: var(--cyan);
-        }}
-
-        .slider-group label {{
-            white-space: nowrap;
-        }}
-
-        .slider-group input[type="range"] {{
-            width: 100%;
-            background: #1e293b;
-            height: 4px;
-            border-radius: 2px;
-            outline: none;
-            -webkit-appearance: none;
-        }}
-
-        .slider-group input[type="range"]::-webkit-slider-thumb {{
-            -webkit-appearance: none;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--pink);
-            cursor: pointer;
-            box-shadow: 0 0 6px var(--pink);
         }}
 
         /* ROTATING COMPASS */
@@ -647,7 +523,7 @@ def get_leaflet_template(title, caption, download_filename, default_layers_json,
 
         .popup-title {{
             font-family: 'Orbitron', sans-serif;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: bold;
             margin-bottom: 6px;
             border-bottom: 1px solid var(--border-pink);
@@ -662,7 +538,7 @@ def get_leaflet_template(title, caption, download_filename, default_layers_json,
         .popup-table {{
             width: 100%;
             border-collapse: collapse;
-            font-size: 10px;
+            font-size: 12px;
         }}
 
         .popup-table td {{
@@ -686,8 +562,8 @@ def get_leaflet_template(title, caption, download_filename, default_layers_json,
             border: 1px solid var(--border-glow) !important;
             color: #f8fafc !important;
             border-radius: 4px !important;
-            padding: 3px 7px !important;
-            font-size: 10px !important;
+            padding: 5px 9px !important;
+            font-size: 12px !important;
             font-weight: bold !important;
             box-shadow: 0 2px 6px rgba(0,0,0,0.5) !important;
         }}
@@ -746,6 +622,47 @@ def get_leaflet_template(title, caption, download_filename, default_layers_json,
         ::-webkit-scrollbar-thumb:hover {{
             background: var(--cyan);
         }}
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 768px) {{
+            .view-switcher-panel {{
+                top: auto;
+                bottom: 80px;
+                right: 50%;
+                transform: translateX(50%);
+            }}
+            .coord-overlay {{
+                display: none;
+            }}
+            .map-controls {{
+                bottom: 20px;
+                right: 10px;
+            }}
+            .system-online-badge {{
+                top: 10px;
+                left: 10px;
+            }}
+            .compass-overlay {{
+                display: none;
+            }}
+            .map-header {{
+                left: 10px;
+                right: 10px;
+                transform: none;
+                text-align: center;
+                padding: 10px;
+            }}
+            #cyber-panel {{
+                width: 100%;
+                border-left: none;
+                border-top: 1px solid var(--border-glow);
+                height: 40vh;
+                position: relative;
+            }}
+            #app-container {{
+                flex-direction: column;
+            }}
+        }}
     </style>
 </head>
 <body>
@@ -755,8 +672,6 @@ def get_leaflet_template(title, caption, download_filename, default_layers_json,
         <!-- MAIN LEAFLET MAP WRAPPER -->
         <div id="map-wrapper">
             <div id="map"></div>
-            <div class="radar-sweep" id="radar-scanner"></div>
-            <div class="scanlines" id="grid-scan"></div>
             
             <!-- BLINKING STATUS BADGE -->
             <div class="system-online-badge">
@@ -764,22 +679,16 @@ def get_leaflet_template(title, caption, download_filename, default_layers_json,
                 <span>● GEWAS PORTAL SYSTEM ACTIVE</span>
             </div>
 
-            <!-- TACTICAL 3D BANNER -->
-            <div class="map-3d-active-banner" id="banner-3d">
-                📡 TACTICAL HUD: HOLOGRAPHIC 3D SCAN ACTIVE // READ-ONLY MODE
+            <!-- VIEW SWITCHER OVERLAY -->
+            <div class="view-switcher-panel">
+                <button class="view-btn active" id="btn-view-2d" onclick="switchView('2d')">2D Flat</button>
+                <button class="view-btn" id="btn-view-split" onclick="switchView('split')">Split Console</button>
             </div>
 
             <!-- HEADER BANNER -->
             <div class="glass-panel map-header">
                 <h1>{title}</h1>
                 <p class="map-caption">{caption}</p>
-            </div>
-
-            <!-- VIEW SWITCHER OVERLAY -->
-            <div class="view-switcher-panel">
-                <button class="view-btn active" id="btn-view-2d" onclick="switchView('2d')">2D Flat</button>
-                <button class="view-btn" id="btn-view-3d" onclick="switchView('3d')">3D Tactical</button>
-                <button class="view-btn" id="btn-view-split" onclick="switchView('split')">Split Console</button>
             </div>
 
             <!-- rotating COMPASS -->
@@ -802,18 +711,6 @@ def get_leaflet_template(title, caption, download_filename, default_layers_json,
                 <button class="control-btn" onclick="downloadActiveLayer()">
                     💾 Export Vector
                 </button>
-            </div>
-
-            <!-- 3D ROTATE CONTROLS PANEL -->
-            <div class="tilt-controls-panel" id="tilt-panel">
-                <div class="slider-group">
-                    <label for="slider-tilt">3D Tilt: <span id="val-tilt">50</span>°</label>
-                    <input type="range" id="slider-tilt" min="15" max="75" value="50" oninput="adjust3DTransforms()">
-                </div>
-                <div class="slider-group">
-                    <label for="slider-rotate">Rotate: <span id="val-rotate">-10</span>°</label>
-                    <input type="range" id="slider-rotate" min="-180" max="180" value="-10" oninput="adjust3DTransforms()">
-                </div>
             </div>
 
             <!-- BUFFER CONFIG CARD -->
@@ -1266,45 +1163,21 @@ def get_leaflet_template(title, caption, download_filename, default_layers_json,
             document.getElementById('coord-display').textContent = `LAT: ${{e.latlng.lat.toFixed(5)}} | LNG: ${{e.latlng.lng.toFixed(5)}}`;
         }});
 
-        // SWITCH VIEW (2D, 3D, Split Console)
+        // SWITCH VIEW (2D, Split Console)
         function switchView(viewType) {{
             const mapEl = document.getElementById('map');
             const mapWrapper = document.getElementById('map-wrapper');
             const cyberPanel = document.getElementById('cyber-panel');
-            const tiltPanel = document.getElementById('tilt-panel');
-            const radarScanner = document.getElementById('radar-scanner');
-            const gridScan = document.getElementById('grid-scan');
-            const banner3d = document.getElementById('banner-3d');
 
             // Reset buttons
             document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
 
             if (viewType === '2d') {{
                 document.getElementById('btn-view-2d').classList.add('active');
-                mapEl.classList.remove('map-3d');
-                banner3d.style.display = 'none';
-                tiltPanel.style.display = 'none';
-                radarScanner.style.display = 'none';
-                gridScan.classList.remove('active');
                 cyberPanel.style.display = 'none';
-                map.invalidateSize();
-            }} else if (viewType === '3d') {{
-                document.getElementById('btn-view-3d').classList.add('active');
-                mapEl.classList.add('map-3d');
-                banner3d.style.display = 'block';
-                tiltPanel.style.display = 'flex';
-                radarScanner.style.display = 'block';
-                gridScan.classList.add('active');
-                cyberPanel.style.display = 'none';
-                adjust3DTransforms();
                 map.invalidateSize();
             }} else if (viewType === 'split') {{
                 document.getElementById('btn-view-split').classList.add('active');
-                mapEl.classList.remove('map-3d');
-                banner3d.style.display = 'none';
-                tiltPanel.style.display = 'none';
-                radarScanner.style.display = 'none';
-                gridScan.classList.remove('active');
                 
                 // Show drawer split
                 cyberPanel.style.display = 'flex';
@@ -1313,19 +1186,6 @@ def get_leaflet_template(title, caption, download_filename, default_layers_json,
                 // Populate Assets List
                 populateAssetsList();
             }}
-        }}
-
-        // Adjust CSS 3D skew properties
-        function adjust3DTransforms() {{
-            const tilt = document.getElementById('slider-tilt').value;
-            const rotate = document.getElementById('slider-rotate').value;
-            
-            document.getElementById('val-tilt').textContent = tilt;
-            document.getElementById('val-rotate').textContent = rotate;
-            
-            const mapEl = document.getElementById('map');
-            mapEl.style.setProperty('--tilt', tilt + 'deg');
-            mapEl.style.setProperty('--rotate', rotate + 'deg');
         }}
 
         // BUFFER RISK QUERY TOOL
