@@ -1,0 +1,82 @@
+{
+  "type": "FeatureCollection",
+  "name": "El Niño 2026 Predicted Flood Extent — Garissa County",
+  "metadata": {
+    "forecast_source": "ICPAC / KMD OND 2026 Seasonal Forecast",
+    "scenario": "Strong El Niño + Positive IOD (worst case)",
+    "forecast_confidence": "HIGH",
+    "peak_risk_period": "October–December 2026",
+    "note": "This layer represents a PREDICTED expanded flood extent based on 2023/2024 El Nino flood footprint scaled by expected rainfall anomaly (+150-200% above normal)."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "El Niño OND 2026 — Predicted Inundation Zone",
+        "Scenario": "Strong El Niño + Positive IOD",
+        "Rainfall_Anomaly_Percent": 175,
+        "Risk_Level": "CRITICAL",
+        "Population_at_Risk": 280000,
+        "Forecast_Period": "October–December 2026",
+        "Source": "ICPAC/KMD Seasonal Outlook + UNOSAT 2024 Baseline",
+        "Color": "rgba(147, 51, 234, 0.35)",
+        "Actions": "Pre-positioning of supplies, early warning activation, mass evacuation planning"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              39.4,
+              -0.1
+            ],
+            [
+              40.5,
+              -0.1
+            ],
+            [
+              41.0,
+              -0.3
+            ],
+            [
+              41.2,
+              -0.7
+            ],
+            [
+              41.0,
+              -1.2
+            ],
+            [
+              40.8,
+              -1.5
+            ],
+            [
+              40.5,
+              -1.8
+            ],
+            [
+              39.8,
+              -1.5
+            ],
+            [
+              39.2,
+              -1.0
+            ],
+            [
+              39.0,
+              -0.7
+            ],
+            [
+              39.1,
+              -0.4
+            ],
+            [
+              39.4,
+              -0.1
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

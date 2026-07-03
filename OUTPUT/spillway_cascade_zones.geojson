@@ -1,0 +1,111 @@
+{
+  "type": "FeatureCollection",
+  "name": "Spillway Cascade — Tana River Flood Wave Travel Times",
+  "metadata": {
+    "source": "Based on KenGen hydraulic studies and 2024 flood event data",
+    "trigger": "Kiambere Dam controlled release (510 m³/s)",
+    "note": "Wave travel time based on average Tana River flow velocity ~15-25 km/hr"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Zone_ID": "T06H",
+        "Label": "⏱ 6 Hours After Release",
+        "Travel_Time_hrs": 6,
+        "Expected_Reach": "Tana River Station / Upper Tana",
+        "Distance_from_Kiambere_km": 90,
+        "Alert_Color": "#ef4444",
+        "Community_Alert": "ACTIVE RELEASE from Kiambere Dam. Communities within 30km of Tana River banks must prepare.",
+        "Action": "Alert authorities, prepare emergency kits, identify evacuation routes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.3,
+          -0.85
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Zone_ID": "T12H",
+        "Label": "⏱ 12 Hours After Release",
+        "Travel_Time_hrs": 12,
+        "Expected_Reach": "Adamson's Falls / Kora National Reserve area",
+        "Distance_from_Kiambere_km": 180,
+        "Alert_Color": "#f97316",
+        "Community_Alert": "FLOOD WAVE approaching Kora area. Communities near Tana River in Tana River County must evacuate.",
+        "Action": "EVACUATE riverine communities. Move livestock. Raise household items."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.9,
+          -0.65
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Zone_ID": "T24H",
+        "Label": "⏱ 24 Hours After Release",
+        "Travel_Time_hrs": 24,
+        "Expected_Reach": "Hola Town / Tana River County",
+        "Distance_from_Kiambere_km": 280,
+        "Alert_Color": "#eab308",
+        "Community_Alert": "FLOOD WAVE approaching Hola. Garissa County DRM offices must activate Emergency Operations.",
+        "Action": "GARISSA COUNTY: Open Emergency Operations Center. Pre-position food & water supplies."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.03,
+          -1.48
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Zone_ID": "T48H",
+        "Label": "⏱ 48 Hours After Release",
+        "Travel_Time_hrs": 48,
+        "Expected_Reach": "Upper Garissa approaches — Balambala Sub County",
+        "Distance_from_Kiambere_km": 360,
+        "Alert_Color": "#f97316",
+        "Community_Alert": "⚠️ IMMINENT FLOOD for Garissa County. Balambala and Fafi sub-counties — EVACUATE NOW.",
+        "Action": "⚠️ ALL RIVERINE COMMUNITIES: Move to designated evacuation points. Schools along Tana to close."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.65,
+          -0.95
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Zone_ID": "T72H",
+        "Label": "⏱ 72 Hours — GARISSA TOWN AT RISK",
+        "Travel_Time_hrs": 72,
+        "Expected_Reach": "Garissa Town / Ijara / Dadaab areas",
+        "Distance_from_Kiambere_km": 450,
+        "Alert_Color": "#dc2626",
+        "Community_Alert": "🚨 GARISSA TOWN FLOOD RISK. Masinga overflow has reached Garissa. Schools, hospitals, and markets may be flooded.",
+        "Action": "🚨 EMERGENCY RESPONSE: DRM + Red Cross + UNICEF + WFP — Deploy emergency teams. Activate all flood shelters."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.65,
+          -0.45
+        ]
+      }
+    }
+  ]
+}

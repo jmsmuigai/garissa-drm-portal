@@ -1,0 +1,143 @@
+{
+  "type": "FeatureCollection",
+  "name": "Community Evacuation & Safety Assembly Points — Garissa County",
+  "metadata": {
+    "source": "Garissa County DRM, UNICEF, Kenya Red Cross",
+    "last_updated": "2026-07-03",
+    "note": "These are designated high-ground evacuation assembly points away from Tana River floodplain"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Garissa Town High Ground Assembly",
+        "Type": "Primary Evacuation Center",
+        "Capacity_persons": 5000,
+        "Elevation_MASL": 138,
+        "Status": "✅ ACTIVE",
+        "Services": "Water, Food (WFP), Medical (UNICEF), Registration (Red Cross)",
+        "Contact": "Garissa DRM Office: +254-046-2021290",
+        "Nearest_Health": "Garissa County Referral Hospital (2km)",
+        "Sub_County": "Garissa Sub County",
+        "marker_emoji": "🏕️"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.6553,
+          -0.456
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Iftin Estate Evacuation Zone",
+        "Type": "Secondary Assembly Point",
+        "Capacity_persons": 2500,
+        "Elevation_MASL": 142,
+        "Status": "✅ ACTIVE",
+        "Services": "Water, Temporary shelter",
+        "Contact": "Garissa DRM Office: +254-046-2021290",
+        "Nearest_Health": "Iftin Health Centre (0.5km)",
+        "Sub_County": "Garissa Sub County",
+        "marker_emoji": "🏕️"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.67,
+          -0.44
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Balambala High Ground Point",
+        "Type": "Sub-County Assembly",
+        "Capacity_persons": 1500,
+        "Elevation_MASL": 120,
+        "Status": "✅ ACTIVE",
+        "Services": "Water, Basic food supplies",
+        "Contact": "Balambala Sub County Office: +254-046-5421",
+        "Nearest_Health": "Balambala Sub-District Hospital (3km)",
+        "Sub_County": "Balambala Sub County",
+        "marker_emoji": "🏕️"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.529,
+          -0.565
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Dadaab Refugee Camp Assembly Area",
+        "Type": "Humanitarian Hub",
+        "Capacity_persons": 8000,
+        "Elevation_MASL": 155,
+        "Status": "✅ ACTIVE",
+        "Services": "Full services: Water, Food, Medical, Protection, Registration",
+        "Contact": "UNHCR Dadaab: +254-046-2023700",
+        "Nearest_Health": "Dadaab Health Centre (1km)",
+        "Sub_County": "Dadaab Sub County",
+        "marker_emoji": "🏕️"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.317,
+          -0.073
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Fafi High Ground Assembly",
+        "Type": "Sub-County Assembly",
+        "Capacity_persons": 1200,
+        "Elevation_MASL": 125,
+        "Status": "⚠️ STANDBY",
+        "Services": "Water, Food (limited)",
+        "Contact": "Fafi Sub County Office: +254-046-2023010",
+        "Nearest_Health": "Fafi Health Centre (2km)",
+        "Sub_County": "Fafi Sub County",
+        "marker_emoji": "🏕️"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.48,
+          -0.29
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Ijara Evacuation Point",
+        "Type": "Sub-County Assembly",
+        "Capacity_persons": 1000,
+        "Elevation_MASL": 110,
+        "Status": "⚠️ STANDBY",
+        "Services": "Basic water and shelter",
+        "Contact": "Ijara Sub County DRM: +254-046-2023050",
+        "Nearest_Health": "Ijara Sub-District Hospital (1km)",
+        "Sub_County": "Ijara Sub County",
+        "marker_emoji": "🏕️"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.51,
+          -1.58
+        ]
+      }
+    }
+  ]
+}

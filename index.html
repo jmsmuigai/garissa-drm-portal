@@ -1143,25 +1143,69 @@
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-label">Exposed Pop.</div>
-                    <div class="stat-val" style="color:var(--red);">156K</div>
+                    <div class="stat-val" style="color:var(--red);">280K</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Flood Area</div>
                     <div class="stat-val">3,800 km²</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">Schools at Risk</div>
-                    <div class="stat-val" style="color:var(--orange);">156</div>
+                    <div class="stat-label">🏫 Schools at Risk</div>
+                    <div class="stat-val" style="color:var(--orange);">88<span style="font-size:9px;color:var(--text-muted)"> /219</span></div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">Health Clinics</div>
-                    <div class="stat-val" style="color:var(--pink);">34</div>
+                    <div class="stat-label">🏥 Health Facilities</div>
+                    <div class="stat-val" style="color:var(--pink);">26<span style="font-size:9px;color:var(--text-muted)"> /69</span></div>
                 </div>
-                <div class="spillway-card">
-                    <div class="spillway-label">⚠️ Masinga Dam Cascade Spillover — Garissa ETA</div>
-                    <div class="spillway-time" id="countdown-val">04d : 12h : 48m</div>
-                    <div style="font-size:9px; color:var(--text-muted); margin-top:4px;">Based on current reservoir elevation telemetry</div>
+                <div class="stat-card">
+                    <div class="stat-label">👧 Pupils at Risk</div>
+                    <div class="stat-val" style="color:var(--red);">28K</div>
                 </div>
+                <div class="stat-card">
+                    <div class="stat-label">🌡️ El Niño Forecast</div>
+                    <div class="stat-val" style="color:var(--purple);">STRONG</div>
+                </div>
+                <div class="spillway-card" style="grid-column:1/-1">
+                    <div class="spillway-label">🏗️ Seven Forks Cascade — Masinga Dam Status</div>
+                    <div class="spillway-time" id="countdown-val" style="color:#ef4444;font-size:14px">🔴 103.5% — OVERFLOW ACTIVE</div>
+                    <div style="font-size:9px; color:var(--text-muted); margin-top:4px;">Controlled releases (850 m³/s) → Garissa ETA: 72 hours | KenGen: +254-020-3666000</div>
+                </div>
+            </div>
+
+            <!-- SEVEN FORKS DAM CASCADE SECTION -->
+            <div class="sec-hdr" style="color:#ef4444; border-color:rgba(220,38,38,0.2);margin-top:6px">🏗️ Seven Forks Cascade — Dam Status</div>
+            <div style="display:flex;flex-direction:column;gap:5px">
+                <div style="background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.3);border-radius:6px;padding:7px 10px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+                        <span style="font-size:11px;font-weight:700">1. Masinga Dam</span>
+                        <span style="background:#dc2626;color:white;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px">🔴 OVERFLOW</span>
+                    </div>
+                    <div style="height:6px;background:#1e293b;border-radius:3px;overflow:hidden">
+                        <div style="height:100%;width:100%;background:linear-gradient(90deg,#dc2626,#ef4444);border-radius:3px"></div>
+                    </div>
+                    <div style="font-size:9px;color:var(--text-muted);margin-top:3px">1,058.2m / 1,056.5m FSL | 103.5% | 72h to Garissa</div>
+                </div>
+                <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:6px;padding:7px 10px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+                        <span style="font-size:11px;font-weight:700">2–4. Kamburu / Gitaru / Kindaruma</span>
+                        <span style="background:#d97706;color:white;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px">🟡 HIGH</span>
+                    </div>
+                    <div style="height:6px;background:#1e293b;border-radius:3px;overflow:hidden">
+                        <div style="height:100%;width:89%;background:linear-gradient(90deg,#d97706,#fbbf24);border-radius:3px"></div>
+                    </div>
+                    <div style="font-size:9px;color:var(--text-muted);margin-top:3px">~85–92% capacity | Receiving Masinga overflow cascade</div>
+                </div>
+                <div style="background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.3);border-radius:6px;padding:7px 10px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+                        <span style="font-size:11px;font-weight:700">5. Kiambere Dam ⚡ LAST DAM</span>
+                        <span style="background:#d97706;color:white;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px">🟡 HIGH</span>
+                    </div>
+                    <div style="height:6px;background:#1e293b;border-radius:3px;overflow:hidden">
+                        <div style="height:100%;width:83%;background:linear-gradient(90deg,#d97706,#fbbf24);border-radius:3px"></div>
+                    </div>
+                    <div style="font-size:9px;color:#ef4444;margin-top:3px">82.5% | ⚡ When released → Garissa floods in 36hrs!</div>
+                </div>
+                <a href="OUTPUT/community_advisory.html" target="_blank" style="display:block;text-align:center;padding:7px;background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.3);border-radius:6px;font-size:11px;color:#ef4444;font-weight:700;text-decoration:none">📋 View Full Community Advisory →</a>
             </div>
 
             <!-- SECTION: Intelligence Briefing -->
@@ -1184,13 +1228,18 @@
             <div class="sec-hdr gold">📥 Download Center</div>
             <div class="download-grid">
                 <a class="dl-btn" href="OUTPUT/garissa_flood_risk_2026.kml" download>📍 KML Export</a>
-                <a class="dl-btn" href="OUTPUT/schools_risk_assessed.geojson" download>🏫 Schools GeoJSON</a>
-                <a class="dl-btn" href="OUTPUT/health_facilities_risk_assessed.geojson" download>🏥 Health GeoJSON</a>
+                <a class="dl-btn" href="OUTPUT/schools_at_risk.geojson" download>🏫 Schools At Risk</a>
+                <a class="dl-btn" href="OUTPUT/health_facilities_at_risk.geojson" download>🏥 Hospitals At Risk</a>
+                <a class="dl-btn" href="OUTPUT/seven_forks_dams.geojson" download>🏗️ Seven Forks Dams</a>
+                <a class="dl-btn" href="OUTPUT/spillway_cascade_zones.geojson" download>⏱️ Cascade Zones</a>
+                <a class="dl-btn" href="OUTPUT/community_safety_zones.geojson" download>🏕️ Evac Zones</a>
+                <a class="dl-btn" href="OUTPUT/elnino_2026_risk_overlay.geojson" download>🌡️ El Niño Layer</a>
                 <a class="dl-btn" href="OUTPUT/boreholes_risk_assessed.geojson" download>💧 Boreholes JSON</a>
                 <a class="dl-btn" href="OUTPUT/flood_risk_summary_statistics.csv" download>📊 Risk CSV</a>
                 <a class="dl-btn" href="OUTPUT/looker_combined_risk_data.csv" download>📈 Full Dataset</a>
                 <a class="dl-btn" href="OUTPUT/garissa_subcounties.geojson" download>🗺️ Subcounties</a>
                 <a class="dl-btn" href="OUTPUT/rivers.geojson" download>🏞️ Rivers JSON</a>
+                <a class="dl-btn" href="OUTPUT/ENHANCED_RISK_SUMMARY.md" download>📋 Risk Summary MD</a>
             </div>
             <button class="dl-btn" style="width:100%; padding:10px; border-radius:8px; font-size:11px;" onclick="window.open('downloads.html','_blank')">
                 📥 Open Full Download Center → High-Res Maps, PDFs, Reports

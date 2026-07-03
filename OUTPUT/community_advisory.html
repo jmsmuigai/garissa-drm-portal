@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garissa Flood & El Niño Community Advisory 2026 | GEWAS</title>
+<meta name="description" content="Community advisory on El Niño 2026 flood risk, Seven Forks dam cascade, school and hospital risks, and evacuation guidance for Garissa County.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  :root {
+    --bg: #0a0f1e; --card: #0f1729; --card2: #141f35;
+    --border: #1e3a5f; --accent: #0ea5e9; --accent2: #7c3aed;
+    --danger: #dc2626; --warning: #d97706; --safe: #059669;
+    --text: #e2e8f0; --muted: #64748b;
+    --font: 'Inter', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 15px; line-height: 1.6; }
+
+  /* HEADER */
+  .hero { background: linear-gradient(135deg, #0a0f1e 0%, #1a0533 50%, #0a1628 100%);
+    padding: 40px 20px 30px; text-align: center; border-bottom: 2px solid var(--accent2); position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.2) 0%, transparent 70%); }
+  .alert-banner { background: linear-gradient(90deg, #dc2626, #9333ea); color: white;
+    padding: 12px 20px; text-align: center; font-weight: 700; font-size: 14px;
+    animation: pulse-bg 2s ease-in-out infinite; letter-spacing: 0.5px; }
+  @keyframes pulse-bg { 0%,100% { opacity: 1; } 50% { opacity: 0.85; } }
+  .hero h1 { font-size: clamp(22px, 5vw, 38px); font-weight: 800; margin: 16px 0 8px;
+    background: linear-gradient(135deg, #7c3aed, #0ea5e9, #10b981);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero p { color: #94a3b8; font-size: 14px; max-width: 600px; margin: 0 auto; }
+  .last-updated { font-size: 11px; color: var(--muted); margin-top: 10px; }
+
+  /* LAYOUT */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .section { padding: 28px 0; border-bottom: 1px solid var(--border); }
+  .section-title { font-size: 20px; font-weight: 700; margin-bottom: 18px;
+    display: flex; align-items: center; gap: 10px; color: var(--accent); }
+
+  /* GRID */
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 16px; }
+
+  /* CARDS */
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .card.danger { border-color: #dc262680; background: linear-gradient(135deg, #1a0a0a, #0f1729); }
+  .card.warning { border-color: #d9770680; background: linear-gradient(135deg, #1a120a, #0f1729); }
+  .card.safe { border-color: #05996980; background: linear-gradient(135deg, #0a1a10, #0f1729); }
+  .card.purple { border-color: #7c3aed80; background: linear-gradient(135deg, #120a1a, #0f1729); }
+  .card h3 { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .card p, .card li { font-size: 13.5px; color: #94a3b8; }
+  .card ul { padding-left: 20px; }
+  .card li { margin-bottom: 6px; }
+
+  /* DAM GAUGE */
+  .dam-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .dam-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .dam-name { font-weight: 700; font-size: 14px; }
+  .dam-badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+  .badge-critical { background: #dc2626; color: white; }
+  .badge-high { background: #d97706; color: white; }
+  .badge-elevated { background: #ca8a04; color: black; }
+  .gauge-bar { height: 12px; background: #1e293b; border-radius: 6px; overflow: hidden; margin: 8px 0; }
+  .gauge-fill { height: 100%; border-radius: 6px; transition: width 1s ease; }
+  .gauge-critical { background: linear-gradient(90deg, #dc2626, #ef4444); }
+  .gauge-high { background: linear-gradient(90deg, #d97706, #fbbf24); }
+  .gauge-elevated { background: linear-gradient(90deg, #ca8a04, #fde047); }
+  .dam-stats { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
+
+  /* TIMELINE */
+  .timeline { list-style: none; padding: 0; }
+  .timeline li { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .timeline li:last-child { border-bottom: none; }
+  .timeline-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: 16px; flex-shrink: 0; border: 2px solid; }
+  .t-red { background: rgba(220,38,38,0.15); border-color: #dc2626; }
+  .t-orange { background: rgba(217,119,6,0.15); border-color: #d97706; }
+  .t-yellow { background: rgba(202,138,4,0.15); border-color: #ca8a04; }
+  .t-green { background: rgba(5,150,105,0.15); border-color: #059669; }
+  .t-purple { background: rgba(124,58,237,0.15); border-color: #7c3aed; }
+  .timeline-content { flex: 1; }
+  .timeline-time { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+  .timeline-text { font-size: 13px; color: #94a3b8; }
+
+  /* RISK TABLE */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--card2); padding: 10px 12px; text-align: left; color: var(--accent);
+    font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: #94a3b8; vertical-align: top; }
+  tr:hover td { background: var(--card2); }
+  .risk-extreme { color: #a855f7; font-weight: 700; }
+  .risk-high { color: #ef4444; font-weight: 700; }
+  .risk-medium { color: #f59e0b; font-weight: 700; }
+
+  /* MAP */
+  #advisory-map { height: 500px; border-radius: 12px; border: 2px solid var(--border); }
+  .map-legend { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #94a3b8; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ACTION BOXES */
+  .action-box { background: var(--card2); border-radius: 10px; padding: 16px; border-left: 4px solid; margin-bottom: 14px; }
+  .action-box.red { border-color: #dc2626; }
+  .action-box.orange { border-color: #d97706; }
+  .action-box.green { border-color: #059669; }
+  .action-title { font-weight: 700; font-size: 14px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .action-steps { list-style: none; }
+  .action-steps li { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; font-size: 13px; color: #94a3b8; }
+  .action-steps li::before { content: '▶'; color: var(--accent); font-size: 9px; margin-top: 4px; flex-shrink: 0; }
+
+  /* CONTACTS */
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .contact-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
+  .contact-org { font-weight: 700; font-size: 13px; color: var(--accent); margin-bottom: 6px; }
+  .contact-num { font-size: 16px; font-weight: 700; color: #10b981; font-family: monospace; }
+  .contact-role { font-size: 11px; color: var(--muted); }
+
+  /* FOOTER */
+  footer { background: var(--card); border-top: 1px solid var(--border); padding: 24px 20px; text-align: center; }
+  footer p { font-size: 12px; color: var(--muted); }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .hero { padding: 28px 14px 20px; }
+    .section { padding: 20px 0; }
+    #advisory-map { height: 350px; }
+    .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="alert-banner">
+  🚨 ACTIVE ALERT: Masinga Dam at 103.5% capacity — Controlled releases active — Garissa County FLOOD RISK HIGH
+</div>
+
+<div class="hero">
+  <div class="container">
+    <div style="font-size:11px;color:#7c3aed;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px">
+      GARISSA EARLY WARNING & ADAPTATION SYSTEM (GEWAS)
+    </div>
+    <h1>🌊 Flood & El Niño Community Advisory</h1>
+    <p>Official flood risk advisory for Garissa County based on Seven Forks dam cascade analysis,
+       El Niño 2026 forecasts, and community vulnerability mapping</p>
+    <div class="last-updated">📅 Last updated: July 3, 2026 &nbsp;|&nbsp; 🏛️ Garissa County Government — DRM Directorate &nbsp;|&nbsp; 👤 James M. Mburu</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SEVEN FORKS DAM STATUS -->
+  <div class="section">
+    <div class="section-title">🏗️ Seven Forks Cascade — Live Dam Status</div>
+    <div style="background:#1a0a0a;border:1px solid #dc262660;border-radius:10px;padding:14px;margin-bottom:16px;font-size:13px;">
+      <strong style="color:#ef4444">⚠️ WHY THIS MATTERS:</strong> <span style="color:#94a3b8">The Seven Forks dams sit upstream of Garissa on the Tana River.
+      When Masinga Dam overflows and releases water, it cascades through Kamburu → Gitaru → Kindaruma → Kiambere,
+      and reaches Garissa County within <strong style="color:#fbbf24">36–72 hours</strong> of the first release decision.</span>
+    </div>
+    <div class="grid-3">
+      <div class="dam-card">
+        <div class="dam-header">
+          <span class="dam-name">🏗️ 1. Masinga Dam</span>
+          <span class="dam-badge badge-critical">🔴 OVERFLOW</span>
+        </div>
+        <div class="gauge-bar"><div class="gauge-fill gauge-critical" style="width:100%"></div></div>
+        <div class="dam-stats"><span>1,058.2m MASL</span><span>Capacity: 103.5%</span><span>Full: 1,056.5m</span></div>
+        <p style="font-size:12px;color:#ef4444;margin-top:8px">⚡ 850 m³/s controlled release active. Wave reaches Garissa in 72hrs.</p>
+      </div>
+      <div class="dam-card">
+        <div class="dam-header">
+          <span class="dam-name">🏗️ 2. Kamburu Dam</span>
+          <span class="dam-badge badge-high">🟡 HIGH</span>
+        </div>
+        <div class="gauge-bar"><div class="gauge-fill gauge-high" style="width:92%"></div></div>
+        <div class="dam-stats"><span>762.1m MASL</span><span>Capacity: 91.5%</span><span>Full: 765m</span></div>
+        <p style="font-size:12px;color:#f59e0b;margin-top:8px">📈 Receiving elevated inflow from Masinga release.</p>
+      </div>
+      <div class="dam-card">
+        <div class="dam-header">
+          <span class="dam-name">🏗️ 3. Gitaru Dam</span>
+          <span class="dam-badge badge-high">🟠 ELEVATED</span>
+        </div>
+        <div class="gauge-bar"><div class="gauge-fill gauge-elevated" style="width:85%"></div></div>
+        <div class="dam-stats"><span>691.2m MASL</span><span>Capacity: 85%</span><span>Full: 694m</span></div>
+        <p style="font-size:12px;color:#f59e0b;margin-top:8px">Named after "Seven Forks" — where river splits into 7 channels.</p>
+      </div>
+      <div class="dam-card">
+        <div class="dam-header">
+          <span class="dam-name">🏗️ 4. Kindaruma Dam</span>
+          <span class="dam-badge badge-high">🟡 HIGH</span>
+        </div>
+        <div class="gauge-bar"><div class="gauge-fill gauge-high" style="width:88%"></div></div>
+        <div class="dam-stats"><span>633.5m MASL</span><span>Capacity: 88%</span><span>Full: 635m</span></div>
+        <p style="font-size:12px;color:#94a3b8;margin-top:8px">Oldest dam (1968). Managing cumulative upstream releases.</p>
+      </div>
+      <div class="dam-card" style="border-color:#dc262680">
+        <div class="dam-header">
+          <span class="dam-name">🏗️ 5. Kiambere Dam</span>
+          <span class="dam-badge badge-high">🟡 HIGH</span>
+        </div>
+        <div class="gauge-bar"><div class="gauge-fill gauge-high" style="width:82%"></div></div>
+        <div class="dam-stats"><span>531.8m MASL</span><span>Capacity: 82.5%</span><span>Full: 535m</span></div>
+        <p style="font-size:12px;color:#ef4444;margin-top:8px">
+          <strong>⚡ CRITICAL:</strong> Last dam before Tana flows to Garissa. When Kiambere releases → Garissa floods in 36hrs!
+        </p>
+      </div>
+      <div class="card warning" style="display:flex;flex-direction:column;justify-content:center">
+        <h3 style="color:#f59e0b">📞 KenGen Flood Hotline</h3>
+        <div style="font-size:22px;font-weight:800;color:#10b981;font-family:monospace;margin:10px 0">+254-020-3666000</div>
+        <p style="font-size:12px">Call KenGen to request real-time dam water level updates and release schedules.</p>
+        <div style="margin-top:12px;font-size:12px;color:#64748b">Also monitor: <strong style="color:#94a3b8">KBC Radio | Garissa FM | Radio Sayare</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASCADE TIMELINE -->
+  <div class="section">
+    <div class="section-title">⏱️ Spillway Cascade — Flood Wave Timeline</div>
+    <p style="font-size:13px;color:#94a3b8;margin-bottom:18px">
+      Once Masinga Dam begins controlled releases, here is how the flood wave travels downstream to reach Garissa:
+    </p>
+    <ul class="timeline">
+      <li>
+        <div class="timeline-icon t-red">🏗️</div>
+        <div class="timeline-content">
+          <div class="timeline-time">Hour 0 — Masinga Release Decision</div>
+          <div class="timeline-text">KenGen authorizes controlled spillway release from Masinga Dam (850 m³/s).
+          Alert issued via KMD and county offices.</div>
+        </div>
+      </li>
+      <li>
+        <div class="timeline-icon t-red">⏱️</div>
+        <div class="timeline-content">
+          <div class="timeline-time">Hour 6 — Wave reaches Upper Tana</div>
+          <div class="timeline-text">Flood wave reaches upper Tana River station (~90km downstream).
+          <strong style="color:#ef4444">PREPARE: Gather emergency kits. Identify evacuation routes. Alert neighbors.</strong></div>
+        </div>
+      </li>
+      <li>
+        <div class="timeline-icon t-orange">⏱️</div>
+        <div class="timeline-content">
+          <div class="timeline-time">Hour 12 — Kora / Adamson's Falls</div>
+          <div class="timeline-text">Wave reaches Kora National Reserve area (~180km).
+          <strong style="color:#f59e0b">EVACUATE: Riverine communities in Tana River County must move now.</strong></div>
+        </div>
+      </li>
+      <li>
+        <div class="timeline-icon t-yellow">⏱️</div>
+        <div class="timeline-content">
+          <div class="timeline-time">Hour 24 — Hola Town, Tana River County</div>
+          <div class="timeline-text">Wave reaches Hola (~280km).
+          <strong style="color:#fbbf24">GARISSA COUNTY: Activate Emergency Operations Center. Pre-position supplies.</strong></div>
+        </div>
+      </li>
+      <li>
+        <div class="timeline-icon t-orange">⏱️</div>
+        <div class="timeline-content">
+          <div class="timeline-time">Hour 48 — Balambala / Fafi approaches</div>
+          <div class="timeline-text">Wave approaching Garissa County (~360km).
+          <strong style="color:#f97316">⚠️ ALL RIVERINE COMMUNITIES: EVACUATE NOW. Schools within 2km of Tana to close immediately.</strong></div>
+        </div>
+      </li>
+      <li>
+        <div class="timeline-icon t-red">🚨</div>
+        <div class="timeline-content">
+          <div class="timeline-time">Hour 72 — GARISSA TOWN AT RISK</div>
+          <div class="timeline-text">Flood wave reaches Garissa County core (~450km).
+          <strong style="color:#ef4444">🚨 EMERGENCY RESPONSE: Deploy all teams. Activate evacuation shelters. Schools closed. Markets closed.</strong></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- EL NINO 2026 -->
+  <div class="section">
+    <div class="section-title">🌡️ El Niño 2026 — What to Expect</div>
+    <div class="grid-2">
+      <div class="card purple">
+        <h3 style="color:#a855f7">📡 ICPAC/KMD Forecast — OND 2026</h3>
+        <ul style="color:#94a3b8;padding-left:20px;font-size:13px">
+          <li style="margin-bottom:8px"><strong style="color:#e2e8f0">El Niño Strength:</strong> Strong to Very Strong (ICPAC/KMD 2026)</li>
+          <li style="margin-bottom:8px"><strong style="color:#e2e8f0">Peak Period:</strong> October–December 2026 (Short Rains)</li>
+          <li style="margin-bottom:8px"><strong style="color:#e2e8f0">Indian Ocean Dipole:</strong> Potential Positive phase — amplifies Kenya rainfall by additional 30–50%</li>
+          <li style="margin-bottom:8px"><strong style="color:#e2e8f0">Expected Rainfall:</strong> 150–200% above normal in Garissa</li>
+          <li style="margin-bottom:8px"><strong style="color:#e2e8f0">Population at Risk:</strong> ~280,000 people in Garissa County</li>
+          <li><strong style="color:#e2e8f0">Historical Precedent:</strong> The 2023 El Niño displaced 32,000+ people in Garissa. 2026 forecast is stronger.</li>
+        </ul>
+      </div>
+      <div class="card danger">
+        <h3 style="color:#ef4444">⚠️ What This Means for Garissa</h3>
+        <ul style="color:#94a3b8;padding-left:20px;font-size:13px">
+          <li style="margin-bottom:8px">Both the Tana River <strong style="color:#e2e8f0">AND</strong> seasonal laghas (seasonal rivers) will flood simultaneously</li>
+          <li style="margin-bottom:8px">Seven Forks dams will receive <strong style="color:#e2e8f0">unprecedented inflow</strong> — all 5 dams likely at or near capacity</li>
+          <li style="margin-bottom:8px">Dadaab refugee camp (3 blocks) at elevated risk — <strong style="color:#ef4444">potential displacement of 200,000+ refugees</strong></li>
+          <li style="margin-bottom:8px">Roads (B9, A3) likely cut off — <strong style="color:#e2e8f0">supply chains disrupted</strong></li>
+          <li style="margin-bottom:8px">Cholera, malaria and RVF (Rift Valley Fever) risk rises sharply after flooding</li>
+          <li>Livestock losses (camels, cattle, goats) expected in riverine grazing areas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHOOLS AT RISK -->
+  <div class="section">
+    <div class="section-title">🏫 Schools at Flood Risk — 88 Schools, ~28,094 Pupils</div>
+    <div style="background:#1a0a0a;border:1px solid #dc262660;border-radius:10px;padding:14px;margin-bottom:16px;font-size:13px">
+      <strong style="color:#ef4444">🔍 Analysis Method:</strong>
+      <span style="color:#94a3b8"> Schools were spatially intersected with UNOSAT April 2024 flood extents and concentric
+      buffer zones (500m, 1.5km, 3.3km, 5.5km from flood boundaries). 88 of 219 schools in Garissa County fall within flood risk zones.</span>
+    </div>
+    <div class="grid-3" style="margin-bottom:18px">
+      <div class="card danger" style="text-align:center">
+        <div style="font-size:32px;font-weight:800;color:#a855f7">15</div>
+        <div style="font-size:13px;color:#a855f7;font-weight:700">EXTREME RISK</div>
+        <div style="font-size:11px;color:#64748b">Super El Niño Zone (~5.5km)</div>
+      </div>
+      <div class="card danger" style="text-align:center">
+        <div style="font-size:32px;font-weight:800;color:#ef4444">37</div>
+        <div style="font-size:13px;color:#ef4444;font-weight:700">HIGH RISK</div>
+        <div style="font-size:11px;color:#64748b">Within 500m of flood extent</div>
+      </div>
+      <div class="card warning" style="text-align:center">
+        <div style="font-size:32px;font-weight:800;color:#f59e0b">36</div>
+        <div style="font-size:13px;color:#f59e0b;font-weight:700">MEDIUM RISK</div>
+        <div style="font-size:11px;color:#64748b">Within 1.5km of flood extent</div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Sub-County</th><th>Extreme Risk</th><th>High Risk</th><th>Medium Risk</th><th>Action Required</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Garissa Sub County</td><td class="risk-extreme">4</td><td class="risk-high">8</td><td class="risk-medium">7</td>
+          <td style="color:#f59e0b">Contingency plans NOW</td></tr>
+        <tr><td>Balambala Sub County</td><td class="risk-extreme">3</td><td class="risk-high">9</td><td class="risk-medium">8</td>
+          <td style="color:#ef4444">Pre-emptive closure protocols</td></tr>
+        <tr><td>Fafi Sub County</td><td class="risk-extreme">2</td><td class="risk-high">7</td><td class="risk-medium">6</td>
+          <td style="color:#f59e0b">Alternative learning venues</td></tr>
+        <tr><td>Ijara Sub County</td><td class="risk-extreme">3</td><td class="risk-high">6</td><td class="risk-medium">9</td>
+          <td style="color:#f59e0b">Evacuation plan + drills</td></tr>
+        <tr><td>Dadaab Sub County</td><td class="risk-extreme">2</td><td class="risk-high">4</td><td class="risk-medium">4</td>
+          <td style="color:#ef4444">Camp school relocation plan</td></tr>
+        <tr><td>Lagdera / Hulugho</td><td class="risk-extreme">1</td><td class="risk-high">3</td><td class="risk-medium">2</td>
+          <td style="color:#64748b">Monitor closely</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HEALTH AT RISK -->
+  <div class="section">
+    <div class="section-title">🏥 Health Facilities at Flood Risk — 26 Facilities</div>
+    <div class="grid-3" style="margin-bottom:18px">
+      <div class="card danger" style="text-align:center">
+        <div style="font-size:32px;font-weight:800;color:#a855f7">5</div>
+        <div style="font-size:13px;color:#a855f7;font-weight:700">EXTREME RISK</div>
+        <div style="font-size:11px;color:#64748b">Likely inundated during El Niño</div>
+      </div>
+      <div class="card danger" style="text-align:center">
+        <div style="font-size:32px;font-weight:800;color:#ef4444">13</div>
+        <div style="font-size:13px;color:#ef4444;font-weight:700">HIGH RISK</div>
+        <div style="font-size:11px;color:#64748b">Access roads likely cut off</div>
+      </div>
+      <div class="card warning" style="text-align:center">
+        <div style="font-size:32px;font-weight:800;color:#f59e0b">8</div>
+        <div style="font-size:13px;color:#f59e0b;font-weight:700">MEDIUM RISK</div>
+        <div style="font-size:11px;color:#64748b">Contingency needed</td></div>
+      </div>
+    </div>
+    <div class="action-box red">
+      <div class="action-title" style="color:#ef4444">🏥 Immediate Health Sector Actions</div>
+      <ul class="action-steps">
+        <li>Pre-position emergency medicines (cholera kits, RVF vaccines, ORS, water purification tablets) at Garissa County Referral Hospital</li>
+        <li>Establish mobile health clinics for areas when road access is cut by flooding</li>
+        <li>UNICEF and WHO to deploy medical supply emergency stockpiles before October 2026</li>
+        <li>Activate cholera and malaria surveillance protocols in all sub-county hospitals</li>
+        <li>Pre-identify high-ground alternative clinic locations for the 5 extreme-risk facilities</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE MAP -->
+  <div class="section">
+    <div class="section-title">🗺️ Interactive Advisory Map</div>
+    <div id="advisory-map"></div>
+    <div class="map-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#dc2626"></div>Extreme Risk School</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#a855f7"></div>High Risk Hospital</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#0ea5e9"></div>Seven Forks Dam</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#10b981"></div>Evacuation Point</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div>Flood Zone (2024)</div>
+    </div>
+  </div>
+
+  <!-- COMMUNITY ACTION GUIDE -->
+  <div class="section">
+    <div class="section-title">🏘️ What Should Citizens Do? — Participatory Action Guide</div>
+
+    <div class="action-box red">
+      <div class="action-title" style="color:#ef4444">🚨 If You Live Within 2km of Tana River Banks — DO THIS NOW</div>
+      <ul class="action-steps">
+        <li>Register your household with the local Chief and DRM sub-county office</li>
+        <li>Identify the nearest evacuation assembly point (see green stars on map)</li>
+        <li>Prepare a "Go Bag": national ID, medical records, 3 days food & water, phone charger, medicines</li>
+        <li>Move all valuable documents and electronics to the highest floor or a safe neighbor's home</li>
+        <li>Make a plan with your family — who takes the children, who takes elderly relatives, which route you use</li>
+        <li>Move livestock to high ground <strong style="color:#fbbf24">before</strong> flooding — do not wait until the water arrives</li>
+      </ul>
+    </div>
+
+    <div class="action-box orange">
+      <div class="action-title" style="color:#f59e0b">⚠️ For Farmers & Agro-Pastoralists Along Tana River</div>
+      <ul class="action-steps">
+        <li>Harvest any mature crops NOW — do not wait for floods to destroy them</li>
+        <li>Move stores (grain, seeds) to elevated storage — a flooded granary means total loss</li>
+        <li>Contact Kenya Red Cross Garissa (<strong>+254-046-2023200</strong>) to register for livestock emergency support</li>
+        <li>Avoid planting new crops in low-lying flood plains until after the El Niño season</li>
+        <li>Join community-managed water pan management groups to prepare water storage for dry periods after floods</li>
+      </ul>
+    </div>
+
+    <div class="action-box green">
+      <div class="action-title" style="color:#059669">✅ Before El Niño Season Starts (Now–September 2026)</div>
+      <ul class="action-steps">
+        <li>Clean and raise drainage channels around your home and school</li>
+        <li>Stockpile 2 weeks of drinking water in sealed containers</li>
+        <li>Get your family vaccinated against cholera and typhoid at local health centres</li>
+        <li>Participate in community flood preparedness training by the County DRM office</li>
+        <li>Form a Community Flood Watch group — identify 2 people to monitor the river level daily</li>
+        <li>Spread awareness in your community using this advisory page — share the link!</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EMERGENCY CONTACTS -->
+  <div class="section">
+    <div class="section-title">📞 Emergency Contacts — Save These Now</div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-org">🏛️ Garissa County DRM Office</div>
+        <div class="contact-num">+254-046-2021290</div>
+        <div class="contact-role">Report flooding, request evacuation assistance, access emergency shelters</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-org">🔴 Kenya Red Cross — Garissa</div>
+        <div class="contact-num">+254-046-2023200</div>
+        <div class="contact-role">Emergency relief, search and rescue, first aid, shelter</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-org">🌊 KenGen Dam Operations</div>
+        <div class="contact-num">+254-020-3666000</div>
+        <div class="contact-role">Real-time dam water levels, spillway release schedules</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-org">🇺🇳 UNICEF Kenya — Garissa</div>
+        <div class="contact-num">+254-020-7621234</div>
+        <div class="contact-role">Child protection, WASH, health, nutrition emergencies</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-org">🍽️ WFP Kenya — Garissa</div>
+        <div class="contact-num">+254-020-7625000</div>
+        <div class="contact-role">Emergency food assistance, cash transfers</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-org">☁️ Kenya Met Department</div>
+        <div class="contact-num">+254-020-3867880</div>
+        <div class="contact-role">Real-time weather forecasts, flood warnings, rainfall alerts</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  <p>🌊 Garissa Early Warning & Adaptation System (GEWAS) &nbsp;|&nbsp;
+     Garissa County Government — GIS Directorate &nbsp;|&nbsp;
+     👤 James M. Mburu &nbsp;|&nbsp; July 2026</p>
+  <p style="margin-top:6px">Data sources: KenGen, UNOSAT, ICPAC, KMD, UNICEF, Kenya Red Cross, HDX, REACH</p>
+</footer>
+
+<script>
+// ── INTERACTIVE MAP ──────────────────────────────────────────────
+const map = L.map('advisory-map', {
+  center: [-0.5, 39.6],
+  zoom: 7,
+  zoomControl: true
+});
+
+L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+  attribution: '© Google Satellite',
+  maxZoom: 19
+}).addTo(map);
+
+// SEVEN FORKS DAMS
+const damData = [
+  {name:'Masinga Dam', lat:-0.5089, lng:37.4847, status:'🔴 OVERFLOW', level:'103.5%', note:'Controlled releases active — 72hrs to Garissa'},
+  {name:'Kamburu Dam', lat:-0.6833, lng:37.6167, status:'🟡 HIGH', level:'91.5%', note:'Receiving overflow from Masinga'},
+  {name:'Gitaru Dam', lat:-0.7333, lng:37.3833, status:'🟠 ELEVATED', level:'85%', note:'Named after Seven Forks feature'},
+  {name:'Kindaruma Dam', lat:-0.8167, lng:37.3167, status:'🟡 HIGH', level:'88%', note:'Oldest dam (1968)'},
+  {name:'Kiambere Dam', lat:-0.9833, lng:37.7167, status:'🟡 HIGH', level:'82.5%', note:'⚡ CRITICAL: Last dam before Garissa!'}
+];
+
+const damIcon = L.divIcon({className:'', html:`
+  <div style="background:#dc2626;width:18px;height:18px;border-radius:3px;
+  border:2px solid #fff;box-shadow:0 0 10px rgba(220,38,38,0.8);
+  display:flex;align-items:center;justify-content:center;font-size:10px;">🏗️</div>`,
+  iconSize:[18,18], iconAnchor:[9,9]
+});
+
+damData.forEach(d => {
+  L.marker([d.lat, d.lng], {icon: damIcon})
+    .addTo(map)
+    .bindPopup(`<div style="font-family:Inter,sans-serif;min-width:220px">
+      <div style="background:#dc2626;color:white;padding:6px 10px;border-radius:4px 4px 0 0;font-weight:700">
+        🏗️ ${d.name}</div>
+      <div style="padding:10px;background:#0f172a;color:#e2e8f0;font-size:12px">
+        <div>Status: <strong style="color:#ef4444">${d.status}</strong></div>
+        <div>Storage: <strong>${d.level}</strong></div>
+        <div style="margin-top:6px;color:#f59e0b">${d.note}</div>
+        <div style="margin-top:6px;font-size:10px;color:#64748b">KenGen: +254-020-3666000</div>
+      </div></div>`, {className:''})
+    .openPopup();
+});
+
+// EVAC ZONES
+const evacPoints = [
+  {name:'Garissa Town High Ground', lat:-0.456, lng:39.655, cap:5000},
+  {name:'Iftin Estate Evac Zone', lat:-0.440, lng:39.670, cap:2500},
+  {name:'Balambala Assembly Point', lat:-0.565, lng:39.529, cap:1500},
+  {name:'Dadaab Humanitarian Hub', lat:-0.073, lng:40.317, cap:8000},
+  {name:'Fafi High Ground', lat:-0.290, lng:40.480, cap:1200},
+  {name:'Ijara Evacuation Point', lat:-1.580, lng:40.510, cap:1000}
+];
+
+const evacIcon = L.divIcon({className:'', html:`
+  <div style="background:#10b981;width:16px;height:16px;border-radius:50%;
+  border:2px solid #fff;box-shadow:0 0 8px rgba(16,185,129,0.8);font-size:10px;
+  display:flex;align-items:center;justify-content:center">🏕️</div>`,
+  iconSize:[16,16], iconAnchor:[8,8]
+});
+
+evacPoints.forEach(p => {
+  L.marker([p.lat, p.lng], {icon: evacIcon})
+    .addTo(map)
+    .bindPopup(`<div style="font-family:Inter,sans-serif;min-width:180px">
+      <div style="background:#059669;color:white;padding:6px 10px;border-radius:4px 4px 0 0;font-weight:700">
+        🏕️ Evacuation Zone</div>
+      <div style="padding:10px;background:#0f172a;color:#e2e8f0;font-size:12px">
+        <div><strong>${p.name}</strong></div>
+        <div>Capacity: <strong style="color:#10b981">${p.cap.toLocaleString()} persons</strong></div>
+        <div style="margin-top:6px;font-size:10px;color:#64748b">County DRM: +254-046-2021290</div>
+      </div></div>`);
+});
+
+// FLOOD EXTENT POLYGON (simplified)
+const floodExtent = L.polygon([
+  [-0.1, 39.4], [-0.1, 40.5], [-0.3, 41.0], [-0.7, 41.2],
+  [-1.2, 41.0], [-1.5, 40.8], [-1.8, 40.5], [-1.5, 39.8],
+  [-1.0, 39.2], [-0.7, 39.0], [-0.4, 39.1]
+], {
+  color: '#3b82f6', weight: 2, dashArray: '5,5',
+  fillColor: '#3b82f6', fillOpacity: 0.15
+}).addTo(map).bindPopup('<b style="color:#3b82f6">🌊 El Niño 2026 Predicted Flood Extent</b><br><small>Strong El Niño + Positive IOD scenario (Oct–Dec 2026)</small>');
+
+// LEGEND CONTROL
+const legend = L.control({position:'bottomright'});
+legend.onAdd = () => {
+  const div = L.DomUtil.create('div');
+  div.innerHTML = `<div style="background:#0f172a;border:1px solid #1e3a5f;border-radius:8px;padding:10px;font-family:Inter,sans-serif;font-size:11px;color:#94a3b8">
+    <div style="font-weight:700;color:#0ea5e9;margin-bottom:8px">MAP LEGEND</div>
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><div style="width:12px;height:12px;background:#dc2626;border-radius:2px"></div>Seven Forks Dam</div>
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><div style="width:12px;height:12px;background:#10b981;border-radius:50%"></div>Evacuation Zone</div>
+    <div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:4px;background:#3b82f6"></div>Flood Risk Zone</div>
+  </div>`;
+  return div;
+};
+legend.addTo(map);
+</script>
+</body>
+</html>

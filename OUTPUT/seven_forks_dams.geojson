@@ -1,0 +1,181 @@
+{
+  "type": "FeatureCollection",
+  "name": "Seven Forks Cascade Dams — Tana River, Kenya",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Dam_Name": "Masinga Dam",
+        "KenGen_ID": "MASINGA-001",
+        "Order_Upstream": 1,
+        "River": "Tana River (Upper)",
+        "Location_Division": "Mbeere North, Embu County",
+        "Commissioned_Year": 1981,
+        "Installed_Capacity_MW": 40,
+        "Full_Supply_Level_MASL": 1056.5,
+        "Current_Level_MASL": 1058.22,
+        "Min_Operating_Level_MASL": 1020.0,
+        "Reservoir_Area_km2": 120.0,
+        "Storage_Capacity_MCM": 1559.0,
+        "Current_Storage_Percent": 103.5,
+        "Status": "🔴 OVERFLOW — Controlled Releases Active",
+        "Alert_Level": "CRITICAL",
+        "Spillway_Active": true,
+        "Release_Rate_m3s": 850,
+        "Travel_Time_to_Garissa_hrs": 72,
+        "Last_Updated": "2026-07-03",
+        "KenGen_Hotline": "+254-020-3666000",
+        "Note": "Dam at 103.5% capacity. Controlled releases are causing downstream flooding in Garissa County.",
+        "Community_Action": "EVACUATE all settlements within 5km of Tana River banks in Garissa County",
+        "marker_emoji": "🏗️"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.4847,
+          -0.5089
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Dam_Name": "Kamburu Dam",
+        "KenGen_ID": "KAMBURU-002",
+        "Order_Upstream": 2,
+        "River": "Tana River",
+        "Location_Division": "Mbeere South, Embu County",
+        "Commissioned_Year": 1974,
+        "Installed_Capacity_MW": 94.2,
+        "Full_Supply_Level_MASL": 765.0,
+        "Current_Level_MASL": 762.1,
+        "Min_Operating_Level_MASL": 730.0,
+        "Reservoir_Area_km2": 25.0,
+        "Storage_Capacity_MCM": 490.0,
+        "Current_Storage_Percent": 91.5,
+        "Status": "🟡 HIGH — Receiving overflow from Masinga",
+        "Alert_Level": "HIGH",
+        "Spillway_Active": false,
+        "Release_Rate_m3s": 620,
+        "Travel_Time_to_Garissa_hrs": 60,
+        "Last_Updated": "2026-07-03",
+        "KenGen_Hotline": "+254-020-3666000",
+        "Note": "Elevated inflow from Masinga spillway releases. Approaching high-water mark.",
+        "Community_Action": "Prepare evacuation kits and identify high ground assembly points",
+        "marker_emoji": "🏗️"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.6167,
+          -0.6833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Dam_Name": "Gitaru Dam",
+        "KenGen_ID": "GITARU-003",
+        "Order_Upstream": 3,
+        "River": "Tana River",
+        "Location_Division": "Mbeere South, Embu County",
+        "Commissioned_Year": 1978,
+        "Installed_Capacity_MW": 225.0,
+        "Full_Supply_Level_MASL": 694.0,
+        "Current_Level_MASL": 691.2,
+        "Min_Operating_Level_MASL": 660.0,
+        "Reservoir_Area_km2": 5.8,
+        "Storage_Capacity_MCM": 82.0,
+        "Current_Storage_Percent": 85.0,
+        "Status": "🟠 ELEVATED — Cascaded flow from Kamburu",
+        "Alert_Level": "HIGH",
+        "Spillway_Active": false,
+        "Release_Rate_m3s": 580,
+        "Travel_Time_to_Garissa_hrs": 52,
+        "Last_Updated": "2026-07-03",
+        "KenGen_Hotline": "+254-020-3666000",
+        "Note": "High cascaded inflow from Kamburu. Named after the Seven Forks feature — where the river splits into 7 channels.",
+        "Community_Action": "Monitor local radio (Garissa FM, Radio Sayare) for updated alerts",
+        "marker_emoji": "🏗️"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.3833,
+          -0.7333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Dam_Name": "Kindaruma Dam",
+        "KenGen_ID": "KINDARUMA-004",
+        "Order_Upstream": 4,
+        "River": "Tana River",
+        "Location_Division": "Mbeere South, Embu County",
+        "Commissioned_Year": 1968,
+        "Installed_Capacity_MW": 72.0,
+        "Full_Supply_Level_MASL": 635.0,
+        "Current_Level_MASL": 633.5,
+        "Min_Operating_Level_MASL": 610.0,
+        "Reservoir_Area_km2": 12.0,
+        "Storage_Capacity_MCM": 148.0,
+        "Current_Storage_Percent": 88.0,
+        "Status": "🟡 HIGH — Oldest dam in cascade, managing cascaded flows",
+        "Alert_Level": "HIGH",
+        "Spillway_Active": false,
+        "Release_Rate_m3s": 540,
+        "Travel_Time_to_Garissa_hrs": 44,
+        "Last_Updated": "2026-07-03",
+        "KenGen_Hotline": "+254-020-3666000",
+        "Note": "Oldest dam in the cascade (1968). Managing cumulative releases from all upstream dams.",
+        "Community_Action": "Livestock owners should move herds to higher elevations immediately",
+        "marker_emoji": "🏗️"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.3167,
+          -0.8167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Dam_Name": "Kiambere Dam",
+        "KenGen_ID": "KIAMBERE-005",
+        "Order_Upstream": 5,
+        "River": "Tana River (Lower)",
+        "Location_Division": "Tharaka-Nithi / Embu Counties",
+        "Commissioned_Year": 1988,
+        "Installed_Capacity_MW": 168.0,
+        "Full_Supply_Level_MASL": 535.0,
+        "Current_Level_MASL": 531.8,
+        "Min_Operating_Level_MASL": 500.0,
+        "Reservoir_Area_km2": 20.0,
+        "Storage_Capacity_MCM": 480.0,
+        "Current_Storage_Percent": 82.5,
+        "Status": "🟡 HIGH — Last dam before Tana flows to Garissa",
+        "Alert_Level": "HIGH",
+        "Spillway_Active": false,
+        "Release_Rate_m3s": 510,
+        "Travel_Time_to_Garissa_hrs": 36,
+        "Last_Updated": "2026-07-03",
+        "KenGen_Hotline": "+254-020-3666000",
+        "Note": "CRITICAL: This is the last dam before the Tana River flows freely into Garissa County. All release decisions here DIRECTLY affect Garissa flooding within 36 hours.",
+        "Community_Action": "⚠️ ALERT: When Kiambere releases water, Garissa town will flood within 36 hours. Contact County DRM Office: +254-046-2021290",
+        "marker_emoji": "🏗️"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.7167,
+          -0.9833
+        ]
+      }
+    }
+  ]
+}

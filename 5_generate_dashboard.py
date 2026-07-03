@@ -130,7 +130,7 @@ def generate_dashboard():
         
         body {
             font-family: 'Inter', sans-serif;
-            font-size: 13px;
+            font-size: 16px;
             background-color: var(--bg-dark);
             background-image: 
                 radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.3) 0px, transparent 50%),
@@ -162,7 +162,7 @@ def generate_dashboard():
         
         .header h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 900;
             margin: 0;
             letter-spacing: 1.5px;
@@ -172,7 +172,7 @@ def generate_dashboard():
         }
         
         .header-subtitle {
-            font-size: 12px;
+            font-size: 14px;
             color: var(--text-muted);
             margin-top: 3px;
             font-weight: 500;
@@ -181,10 +181,10 @@ def generate_dashboard():
         
         .author-stamp {
             font-family: 'Orbitron', sans-serif;
-            font-size: 11px;
+            font-size: 13px;
             color: var(--cyan);
             border: 1px solid rgba(6, 182, 212, 0.4);
-            padding: 5px 10px;
+            padding: 6px 12px;
             border-radius: 4px;
             background: rgba(6, 182, 212, 0.08);
             font-weight: bold;
@@ -1323,6 +1323,38 @@ def generate_dashboard():
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
             border-color: var(--cyan);
+        }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+                padding: 10px;
+            }
+            .header h1 {
+                font-size: 20px;
+            }
+            .bottom-dashboard-grid {
+                grid-template-columns: 1fr;
+                display: flex;
+                flex-direction: column;
+            }
+            .map-wrapper {
+                height: 50vh;
+                min-height: 400px;
+            }
+            .control-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .control-group {
+                width: 100%;
+            }
+            .ops-btn-group {
+                flex-direction: column;
+            }
         }
     </style>
     <!-- API keys configuration for local and server environments -->
