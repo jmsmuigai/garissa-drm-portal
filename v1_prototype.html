@@ -929,60 +929,6 @@
             .globe-wrapper { width: 200px; height: 200px; }
             :root { --sidebar-w: 260px; }
         }
-        /* ======================== 3D FLOATING LOGO ======================== */
-        .floating-logo-container {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 120px;
-            height: 120px;
-            z-index: 1000;
-            perspective: 1000px;
-            pointer-events: none;
-        }
-
-        .floating-logo {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            animation: float3D 6s ease-in-out infinite;
-            filter: drop-shadow(0 15px 15px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 20px var(--border-glow));
-            transform-style: preserve-3d;
-        }
-
-        @keyframes float3D {
-            0% { transform: translateY(0) rotateX(10deg) rotateY(0deg); }
-            33% { transform: translateY(-15px) rotateX(20deg) rotateY(15deg) scale(1.05); filter: drop-shadow(0 25px 20px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 35px var(--cyan)); }
-            66% { transform: translateY(5px) rotateX(-10deg) rotateY(-15deg); filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 15px var(--pink)); }
-            100% { transform: translateY(0) rotateX(10deg) rotateY(0deg); }
-        }
-
-        /* ======================== GENERATE REPORT BUTTON ======================== */
-        .generate-report-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, rgba(57, 255, 20, 0.2), rgba(0, 243, 255, 0.15));
-            border: 1px solid var(--lime);
-            color: white;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            letter-spacing: 1px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
-        }
-
-        .generate-report-btn:hover {
-            background: linear-gradient(135deg, rgba(57, 255, 20, 0.4), rgba(0, 243, 255, 0.3));
-            box-shadow: 0 0 25px rgba(57, 255, 20, 0.5), 0 0 10px rgba(0, 243, 255, 0.5);
-            transform: translateY(-2px);
-            color: #fff;
-        }
     </style>
 </head>
 <body>
@@ -1299,32 +1245,6 @@
                 📥 Open Full Download Center → High-Res Maps, PDFs, Reports
             </button>
 
-            <!-- SECTION: Version History -->
-            <div class="sec-hdr" style="color:var(--cyan); border-color:rgba(0,243,255,0.2);">🕰️ Version History</div>
-            <div class="menu-list">
-                <a class="menu-item active" href="index.html">
-                    <div class="menu-icon">🌟</div>
-                    <div class="menu-text">
-                        <div class="menu-label">Final Version (Current)</div>
-                        <div class="menu-desc">v3.0 · Full Capabilities</div>
-                    </div>
-                </a>
-                <a class="menu-item" href="v2_beta.html">
-                    <div class="menu-icon">📈</div>
-                    <div class="menu-text">
-                        <div class="menu-label">Beta Version</div>
-                        <div class="menu-desc">v2.0 · Analytics Update</div>
-                    </div>
-                </a>
-                <a class="menu-item" href="v1_prototype.html">
-                    <div class="menu-icon">🛠️</div>
-                    <div class="menu-text">
-                        <div class="menu-label">Prototype Version</div>
-                        <div class="menu-desc">v1.0 · Initial Layout</div>
-                    </div>
-                </a>
-            </div>
-
             <!-- SECTION: Theme -->
             <div class="sec-hdr purple">🎨 Portal Theme</div>
             <div class="theme-dots">
@@ -1363,7 +1283,6 @@
                     </div>
                     <div style="display:flex;align-items:center;gap:8px;">
                         <div class="map-actions">
-                            <button class="generate-report-btn" onclick="generateWellAnalyzedReport()">📄 Generate AI Report</button>
                             <a id="open-fullscreen-btn" href="OUTPUT/google_hybrid_map.html" target="_blank" class="action-btn">🔗 Open Fullscreen</a>
                             <button class="action-btn gold" onclick="downloadCurrentMapPNG()">📥 Download Map</button>
                             <button class="action-btn" onclick="refreshMap()">🔄 Refresh</button>
@@ -1372,9 +1291,6 @@
                 </div>
 
                 <div class="iframe-container" id="map-iframe-container" style="flex: 1;">
-                    <div class="floating-logo-container">
-                        <img src="garissa_logo.png" alt="Garissa County Logo" class="floating-logo" onerror="this.src='assets/garissa_drm_logo.png'">
-                    </div>
                     <div class="loading-overlay hidden" id="loading-overlay">
                         <div class="spinner"></div>
                     </div>
@@ -1596,32 +1512,6 @@
         function shareOnWhatsApp() {
             const msg = encodeURIComponent('🚨 GARISSA FLOOD WARNING 2026: River Tana expected to flood by Oct 22-28. Schools & clinics at risk. Visit GEWAS Portal for details. Stay Safe! — Garissa County DRM');
             window.open('https://wa.me/?text=' + msg, '_blank');
-        }
-
-        // ================================================================
-        // REPORT GENERATION
-        // ================================================================
-        function generateWellAnalyzedReport() {
-            // Simulate generation process with loader
-            const overlay = document.getElementById('loading-overlay');
-            const spinner = document.querySelector('#loading-overlay .spinner');
-            overlay.classList.remove('hidden');
-            
-            // Change spinner color to lime for report generation
-            spinner.style.borderColor = 'rgba(57, 255, 20, 0.3)';
-            spinner.style.borderTopColor = 'var(--lime)';
-            
-            setTimeout(() => {
-                // Open the report in a new tab (fallback to an alert if no file)
-                window.open('OUTPUT/AI_FLOOD_RISK_ADVISORY.md', '_blank');
-                hideLoader();
-                
-                // Reset spinner colors back to default cyan
-                setTimeout(() => {
-                    spinner.style.borderColor = 'rgba(0, 243, 255, 0.1)';
-                    spinner.style.borderTopColor = 'var(--cyan)';
-                }, 500);
-            }, 1800); // 1.8 seconds artificial delay for "generation"
         }
 
         // ================================================================

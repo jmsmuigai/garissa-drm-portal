@@ -62,14 +62,19 @@ For decision-makers, stakeholders, and presentations, use the flagship notebook.
 - Gemini AI auto-generates a bilingual advisory report
 - Generates beautiful community dashboard summary cards
 
-### 2. The Offline HTML Dashboard (For Community Sharing)
-Need something to share on WhatsApp or view offline? The HTML dashboard is a self-contained interactive map.
+### 2. The Offline HTML Dashboard & GEWAS Portal (For Community Sharing)
+Need something to share on WhatsApp or view offline? The HTML dashboard is a self-contained interactive map with a modern aesthetic, complete with a 3D floating Garissa County logo.
+
+**New Features (v3.0):**
+- **Version History System:** Access historical layouts and prototype stages via the sidebar menu (`v1_prototype.html`, `v2_beta.html`, `index.html`).
+- **One-Click AI Report Generation:** Click the new "📄 Generate AI Report" button in the map viewport to stream and render a fully analyzed AI vulnerability report.
+- **3D Floating Identity:** Features a beautiful, animated 3D County Government crest that levitates above the map interface.
 
 ```bash
 # Run the generator
 python3 5_generate_dashboard.py
 ```
-*Then double-click `OUTPUT/garissa_flood_risk_dashboard.html` in your browser.*
+*Then double-click `index.html` in your browser.*
 
 ### 3. Professional QGIS Workspace
 For GIS professionals who need to modify maps or print high-resolution PDFs.

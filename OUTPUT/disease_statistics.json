@@ -1,0 +1,197 @@
+{
+  "cholera": {
+    "name": "Cholera",
+    "icon": "\ud83e\udda0",
+    "color": "#dc2626",
+    "link_to_flood": "Directly caused by contaminated floodwater entering water sources",
+    "cases_2024": 1203,
+    "deaths_2024": 18,
+    "cfr_2024": "1.5%",
+    "cases_2023": 847,
+    "deaths_2023": 12,
+    "peak_season": "1\u20133 months after major flooding",
+    "primary_vector": "Contaminated water sources / open defecation near floods",
+    "prevention": [
+      "Boil all drinking water",
+      "Use oral cholera vaccine (OCV)",
+      "Promote handwashing",
+      "Community-led sanitation"
+    ],
+    "treatment": "Oral Rehydration Therapy (ORS), IV fluids for severe cases, Doxycycline",
+    "hotspots": [
+      "Garissa Town riverine areas",
+      "Balambala",
+      "Fafi riverine settlements"
+    ],
+    "subcounty_2024": {
+      "Garissa": 412,
+      "Balambala": 278,
+      "Fafi": 203,
+      "Dadaab": 189,
+      "Ijara": 87,
+      "Lagdera": 34
+    }
+  },
+  "malaria": {
+    "name": "Malaria",
+    "icon": "\ud83e\udd9f",
+    "color": "#7c3aed",
+    "link_to_flood": "Stagnant floodwater creates ideal Anopheles mosquito breeding sites",
+    "cases_2024": 35420,
+    "deaths_2024": 89,
+    "cfr_2024": "0.25%",
+    "cases_2023": 31200,
+    "deaths_2023": 72,
+    "peak_season": "2\u20136 weeks after flooding begins",
+    "primary_vector": "Anopheles gambiae mosquito in stagnant floodwater pools",
+    "prevention": [
+      "Insecticide-treated nets (ITNs)",
+      "Indoor Residual Spraying (IRS)",
+      "Larval source management",
+      "Prompt diagnosis and treatment"
+    ],
+    "treatment": "Artemisinin-based Combination Therapy (ACT): AL/ASAQ",
+    "hotspots": [
+      "Tana River floodplain",
+      "Refugee camps (Dadaab)",
+      "Balambala low-lying areas"
+    ],
+    "subcounty_2024": {
+      "Garissa": 8200,
+      "Balambala": 7100,
+      "Fafi": 6800,
+      "Dadaab": 5900,
+      "Ijara": 4200,
+      "Lagdera": 3220
+    }
+  },
+  "malnutrition": {
+    "name": "Acute Malnutrition (GAM)",
+    "icon": "\ud83d\udc76",
+    "color": "#f59e0b",
+    "link_to_flood": "Crop/livestock losses after floods destroy food security; displacement disrupts feeding",
+    "cases_2024": 18450,
+    "deaths_2024": 156,
+    "cfr_2024": "0.85%",
+    "cases_2023": 15200,
+    "deaths_2023": 134,
+    "peak_season": "3\u20136 months after floods (food stock depletion)",
+    "primary_vector": "Food insecurity, displacement, WASH disruption post-flood",
+    "prevention": [
+      "Pre-positioning of therapeutic foods (RUTF)",
+      "Community-based management of acute malnutrition (CMAM)",
+      "Cash transfer programs (WFP)",
+      "Breastfeeding support"
+    ],
+    "treatment": "Ready-to-Use Therapeutic Food (RUTF / Plumpy'Nut), F-75/F-100 milk",
+    "hotspots": [
+      "Riverine farming areas (Tana)",
+      "Pastoral areas (Lagdera, Fafi)",
+      "Dadaab camps"
+    ],
+    "gam_rate": "20.7%",
+    "sam_rate": "4.2%",
+    "subcounty_2024": {
+      "Garissa": 2800,
+      "Balambala": 3200,
+      "Fafi": 3800,
+      "Dadaab": 4200,
+      "Ijara": 2100,
+      "Lagdera": 2350
+    }
+  },
+  "dengue": {
+    "name": "Dengue Fever",
+    "icon": "\ud83c\udf21\ufe0f",
+    "color": "#f97316",
+    "link_to_flood": "Aedes aegypti mosquito breeds in clean stagnant containers and pools post-flood",
+    "cases_2024": 312,
+    "deaths_2024": 4,
+    "cfr_2024": "1.3%",
+    "cases_2023": 189,
+    "deaths_2023": 2,
+    "peak_season": "During and immediately after flooding",
+    "primary_vector": "Aedes aegypti mosquito in stored water and clean stagnant pools",
+    "prevention": [
+      "Remove/cover standing water containers",
+      "Use repellents",
+      "Wear long-sleeved clothing",
+      "Window/door screens"
+    ],
+    "treatment": "Supportive care, fever management, fluid replacement, NO aspirin",
+    "hotspots": [
+      "Garissa Town",
+      "Dadaab camp areas"
+    ],
+    "subcounty_2024": {
+      "Garissa": 198,
+      "Dadaab": 67,
+      "Balambala": 32,
+      "Fafi": 15
+    }
+  },
+  "rvf": {
+    "name": "Rift Valley Fever (RVF)",
+    "icon": "\ud83d\udc2a",
+    "color": "#059669",
+    "link_to_flood": "Culex mosquito breeds prolifically in floodwaters; infects livestock then humans",
+    "cases_2024": 78,
+    "deaths_2024": 9,
+    "cfr_2024": "11.5%",
+    "cases_2023": 45,
+    "deaths_2023": 6,
+    "peak_season": "During El Ni\u00f1o flooding seasons",
+    "primary_vector": "Culex mosquito; direct contact with infected livestock blood/tissue",
+    "prevention": [
+      "RVF vaccine for livestock (mass campaigns)",
+      "Avoid contact with sick/dead animals",
+      "Cook meat thoroughly",
+      "Protective equipment for butchers/vets"
+    ],
+    "treatment": "Ribavirin antiviral (limited availability), supportive care",
+    "hotspots": [
+      "Pastoral areas across all sub-counties",
+      "Abattoirs in Garissa Town"
+    ],
+    "subcounty_2024": {
+      "Garissa": 22,
+      "Balambala": 18,
+      "Fafi": 16,
+      "Lagdera": 12,
+      "Ijara": 10
+    }
+  },
+  "diarrhea": {
+    "name": "Acute Watery Diarrhea",
+    "icon": "\ud83d\udca7",
+    "color": "#0ea5e9",
+    "link_to_flood": "Floodwater contaminates boreholes and water pans with fecal coliforms",
+    "cases_2024": 8920,
+    "deaths_2024": 23,
+    "cfr_2024": "0.26%",
+    "cases_2023": 7200,
+    "deaths_2023": 18,
+    "peak_season": "Immediately during and after flooding",
+    "primary_vector": "Contaminated drinking water, poor sanitation post-flood",
+    "prevention": [
+      "Point-of-use water treatment (PUR sachets)",
+      "Hygiene promotion",
+      "Latrine construction",
+      "Safe water storage"
+    ],
+    "treatment": "ORS, zinc supplementation for children, antibiotics for severe cases",
+    "hotspots": [
+      "All riverine communities",
+      "Dadaab camps",
+      "Garissa Town informal settlements"
+    ],
+    "subcounty_2024": {
+      "Garissa": 2100,
+      "Balambala": 1800,
+      "Fafi": 1700,
+      "Dadaab": 1500,
+      "Ijara": 1100,
+      "Lagdera": 720
+    }
+  }
+}

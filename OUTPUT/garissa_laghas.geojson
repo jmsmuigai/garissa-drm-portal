@@ -1,0 +1,201 @@
+{
+  "type": "FeatureCollection",
+  "name": "Garissa Laghas \u2014 Seasonal Rivers & Dry Riverbeds",
+  "metadata": {
+    "note": "Laghas (seasonal riverbeds) fill during rains and cause severe localized flooding. Key laghas based on Garissa County DRM surveys."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Lagha Bur Dab",
+        "Local_Name": "Bur Dab Seasonal River",
+        "Risk_Level": "CRITICAL",
+        "Flood_Season": "OND (Oct\u2013Dec) & MAM (Mar\u2013May)",
+        "Area_at_Risk": "Garissa Town southern areas, Bur Dab settlement",
+        "Warning_Sign": "Water turns brown/muddy upstream; strong river smell",
+        "Action": "Avoid crossing when water rises above knee height",
+        "Sub_County": "Garissa Sub County",
+        "Historical_Floods": "2019, 2020, 2023, 2024",
+        "icon": "\ud83c\udf0a"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            39.55,
+            -0.52
+          ],
+          [
+            39.6,
+            -0.49
+          ],
+          [
+            39.65,
+            -0.48
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Lagha Aribo",
+        "Local_Name": "Aribo Seasonal Course",
+        "Risk_Level": "HIGH",
+        "Flood_Season": "OND (Oct\u2013Dec)",
+        "Area_at_Risk": "Balambala Town, Marafa Settlement",
+        "Warning_Sign": "Sudden increase in water discharge; debris floating",
+        "Action": "Evacuate low-lying settlements immediately when rains are heavy",
+        "Sub_County": "Balambala Sub County",
+        "Historical_Floods": "2020, 2023, 2024",
+        "icon": "\ud83c\udf0a"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            39.45,
+            -0.6
+          ],
+          [
+            39.5,
+            -0.57
+          ],
+          [
+            39.55,
+            -0.56
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Lagha Godana",
+        "Local_Name": "Godana Wadi",
+        "Risk_Level": "HIGH",
+        "Flood_Season": "OND (Oct\u2013Dec)",
+        "Area_at_Risk": "Fafi Sub County low-lying settlements",
+        "Warning_Sign": "Rapid water level rise after upstream rains",
+        "Action": "Do not build permanent structures within 500m of the lagha",
+        "Sub_County": "Fafi Sub County",
+        "Historical_Floods": "2019, 2023",
+        "icon": "\ud83c\udf0a"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.4,
+            -0.32
+          ],
+          [
+            40.43,
+            -0.28
+          ],
+          [
+            40.47,
+            -0.25
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Ghidir Lagha",
+        "Local_Name": "Ghidir Seasonal Wadi",
+        "Risk_Level": "MODERATE",
+        "Flood_Season": "MAM (Mar\u2013May)",
+        "Area_at_Risk": "Dadaab Camp periphery, Liboi border area",
+        "Warning_Sign": "Soil becomes saturated; roads become impassable",
+        "Action": "Reroute vehicles to B9 highway; avoid off-road tracks",
+        "Sub_County": "Dadaab Sub County",
+        "Historical_Floods": "2020, 2022, 2024",
+        "icon": "\ud83c\udf0a"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.3,
+            -0.05
+          ],
+          [
+            40.33,
+            -0.08
+          ],
+          [
+            40.38,
+            -0.1
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Lagha Lak Dera",
+        "Local_Name": "Lak Dera Depression",
+        "Risk_Level": "HIGH",
+        "Flood_Season": "OND & MAM",
+        "Area_at_Risk": "Lagdera Sub County settlements, Habaswein area",
+        "Warning_Sign": "Standing water in lagha bed; livestock avoid the area",
+        "Action": "Pre-position boats and life jackets in Habaswein DRM office",
+        "Sub_County": "Lagdera Sub County",
+        "Historical_Floods": "2018, 2020, 2021, 2024",
+        "icon": "\ud83c\udf0a"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            39.5,
+            -0.98
+          ],
+          [
+            39.55,
+            -0.95
+          ],
+          [
+            39.6,
+            -0.9
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Lagha Hulugho",
+        "Local_Name": "Hulugho Seasonal River",
+        "Risk_Level": "MODERATE",
+        "Flood_Season": "OND (Oct\u2013Dec)",
+        "Area_at_Risk": "Hulugho town, Ijara Sub County northern areas",
+        "Warning_Sign": "Flash flooding without warning after upstream rainfall",
+        "Action": "Install gauging stations; community flood watch teams needed",
+        "Sub_County": "Ijara Sub County",
+        "Historical_Floods": "2020, 2024",
+        "icon": "\ud83c\udf0a"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.6,
+            -0.45
+          ],
+          [
+            40.63,
+            -0.48
+          ],
+          [
+            40.65,
+            -0.52
+          ]
+        ]
+      }
+    }
+  ]
+}
