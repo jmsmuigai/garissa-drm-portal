@@ -572,7 +572,7 @@ html, body { height:100%; overflow:hidden; font-family:var(--font); background:v
 <!-- HEADER -->
 <div class="header">
   <div class="header-left">
-    <img src="../garissa_logo.png" alt="Garissa DRM" class="logo-img" onerror="this.style.display='none'">
+    <img src="../garissa_official_logo.png" alt="Garissa DRM" class="logo-img" onerror="this.style.display='none'">
     <div>
       <div class="header-title">GARISSA COUNTY DRM — GEWAS 2026</div>
       <div class="header-sub">Garissa Early Warning & Adaptation System &nbsp;|&nbsp; GIS Directorate — James M. Mburu</div>

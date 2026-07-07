@@ -901,27 +901,57 @@
 
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* ======================== WEATHER WIDGET ======================== */
-        .weather-mini {
-            background: rgba(5, 10, 25, 0.8);
-            border: 1px solid rgba(0, 150, 255, 0.2);
-            border-radius: 10px;
-            padding: 10px;
+        /* ======================== WEATHER PRO WIDGET ======================== */
+        .weather-pro-widget {
+            background: linear-gradient(145deg, #7ebcf7 0%, #569ded 100%);
+            border-radius: 20px;
+            padding: 20px;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, sans-serif;
+            box-shadow: 0 8px 25px rgba(86, 157, 237, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .wp-current { display: flex; justify-content: space-between; align-items: flex-start; z-index: 2; position: relative; }
+        .wp-temp-main { font-size: 64px; font-weight: 700; line-height: 1.1; letter-spacing: -2px; text-shadow: 1px 2px 4px rgba(0,0,0,0.1); }
+        .wp-icon-main { font-size: 55px; filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15)); line-height: 1; }
+        .wp-desc { font-size: 17px; font-weight: 500; margin-top: 8px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); z-index: 2; position: relative; }
+        .wp-city { font-size: 15px; margin-top: 24px; font-weight: 600; z-index: 2; position: relative; }
+        .wp-highlow { font-size: 13px; margin-top: 4px; opacity: 0.9; font-weight: 500; z-index: 2; position: relative; }
+        .wp-time { font-size: 12px; margin-top: 2px; opacity: 0.85; z-index: 2; position: relative; }
+
+        .wp-card {
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 14px;
+            padding: 14px;
+            margin-top: 16px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            z-index: 2; position: relative;
+        }
+        .wp-hourly-desc { font-size: 11px; font-weight: 500; margin-bottom: 12px; line-height: 1.4; }
+        .wp-hourly-scroll {
             display: flex;
-            align-items: center;
-            gap: 10px;
+            overflow-x: auto;
+            gap: 15px;
+            padding-bottom: 5px;
+            scrollbar-width: none; /* Firefox */
         }
-
-        .weather-temp {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 22px;
-            font-weight: 900;
-            color: var(--orange);
-        }
-
-        .weather-info { flex: 1; }
-        .weather-loc { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
-        .weather-desc { font-size: 11px; color: var(--text-main); margin-top: 2px; }
+        .wp-hourly-scroll::-webkit-scrollbar { display: none; }
+        .wp-hr-item { display: flex; flex-direction: column; align-items: center; min-width: 35px; }
+        .wp-hr-time { font-size: 10px; font-weight: 500; opacity: 0.9; margin-bottom: 6px; white-space: nowrap; }
+        .wp-hr-icon { font-size: 18px; margin-bottom: 6px; }
+        .wp-hr-temp { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .wp-hr-pop { font-size: 9px; opacity: 0.8; display: flex; align-items: center; gap: 2px; color: #d0e8ff; font-weight: 600; }
+        
+        .wp-daily-item { display: flex; justify-content: space-between; align-items: center; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .wp-daily-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .wp-d-day { width: 75px; font-weight: 500; }
+        .wp-d-icons { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #d0e8ff; }
+        .wp-d-temps { width: 60px; text-align: right; font-weight: 600; word-spacing: 4px; }
+        
+        .wp-cloud-bg { position: absolute; right: -20px; top: -10px; opacity: 0.15; font-size: 180px; z-index: 1; pointer-events: none; }
 
         /* ======================== RESPONSIVE ======================== */
         @media (max-width: 900px) {
@@ -1008,7 +1038,7 @@
         <div class="header-left">
             <img src="garissa_logo_metallic.png"
                  class="header-emblem" alt="Garissa County DRM Logo"
-                 onerror="this.src='https://placehold.co/100/0a1020/00f3ff?text=DRM';" style="filter:drop-shadow(0 0 10px rgba(255,215,0,0.5)); animation: pulse-gold 4s infinite alternate;">
+                 onerror="this.src='https://placehold.co/100/0a1020/00f3ff?text=DRM';" style="filter:drop-shadow(0 0 10px rgba(255,215,0,0.5));">
             <div class="header-title">
                 <h1>GARISSA COUNTY DRM — GEWAS 2026</h1>
                 <div class="header-subtitle">⚡ Strategic Multi-Hazard Decision Support Portal &nbsp;|&nbsp; Super El Niño Ready &nbsp;|&nbsp; Real-Time Analysis Engine</div>
@@ -1195,12 +1225,42 @@
 
             <!-- SECTION: Live Weather -->
             <div class="sec-hdr gold">⛅ Live Weather Intelligence</div>
-            <div class="weather-mini">
-                <div style="font-size:28px;" id="weather-icon">⛅</div>
-                <div class="weather-info">
-                    <div class="weather-loc">🌍 Garissa, Kenya</div>
-                    <div class="weather-temp" id="weather-big-temp">34°C</div>
-                    <div class="weather-desc" id="weather-desc">Fetching conditions...</div>
+            <div class="weather-pro-widget">
+                <div class="wp-cloud-bg">☁️</div>
+                <div class="wp-current">
+                    <div class="wp-temp-main" id="wp-temp">--°</div>
+                    <div class="wp-icon-main" id="wp-icon">⛅</div>
+                </div>
+                <div class="wp-desc" id="wp-desc">Loading...</div>
+                <div class="wp-city">Garissa</div>
+                <div class="wp-highlow"><span id="wp-hl">--° / --°</span> <span style="margin-left:4px">Feels like <span id="wp-feels">--°</span></span></div>
+                <div class="wp-time" id="wp-time">--, --:-- --</div>
+
+                <div class="wp-card">
+                    <div class="wp-hourly-desc" id="wp-hourly-desc">Loading forecast...</div>
+                    <div class="wp-hourly-scroll" id="wp-hourly">
+                        <!-- JS populated -->
+                    </div>
+                </div>
+
+                <div class="wp-card">
+                    <div style="font-weight:700; text-align:center; font-size:12px; margin-bottom:4px;">Wind Conditions</div>
+                    <div style="font-size:11px; text-align:center; opacity:0.9" id="wp-wind">--</div>
+                </div>
+
+                <div class="wp-card" id="wp-daily" style="padding: 10px 14px;">
+                    <!-- JS populated -->
+                </div>
+                
+                <div style="display:flex; gap:10px; margin-top:10px;">
+                    <div class="wp-card" style="flex:1; margin-top:0; display:flex; justify-content:space-between; align-items:center; padding: 10px;">
+                        <span style="font-size:11px; font-weight:600">Pollen</span>
+                        <span style="font-size:11px; font-weight:700; opacity:0.9">Low</span>
+                    </div>
+                    <div class="wp-card" style="flex:1; margin-top:0; display:flex; justify-content:space-between; align-items:center; padding: 10px;">
+                        <span style="font-size:11px; font-weight:600">AQI</span>
+                        <span style="font-size:11px; font-weight:700; opacity:0.9">Good (24)</span>
+                    </div>
                 </div>
             </div>
 
@@ -1454,24 +1514,111 @@
         tickCountdown();
 
         // ================================================================
-        // LIVE WEATHER
+        // LIVE WEATHER PRO
         // ================================================================
-        async function fetchWeather() {
+        async function fetchWeatherPro() {
+            const apiKey = '3755865e1110b239c55dee68b8dc0bc5';
             try {
-                const res = await fetch('https://api.openweathermap.org/data/2.5/weather?q=Garissa,KE&units=metric&appid=3755865e1110b239c55dee68b8dc0bc5');
-                if (!res.ok) throw new Error('API error');
-                const d = await res.json();
-                const temp = Math.round(d.main.temp);
-                const desc = d.weather[0].description;
-                const icon = getWeatherIcon(d.weather[0].id);
-                document.getElementById('weather-temp').textContent = temp + '°C';
-                document.getElementById('weather-big-temp').textContent = temp + '°C';
-                document.getElementById('weather-desc').textContent = desc.charAt(0).toUpperCase() + desc.slice(1);
-                document.getElementById('weather-icon').textContent = icon;
-            } catch(e) {
-                document.getElementById('weather-desc').textContent = 'Weather data unavailable';
-                // fallback to known typical values
-                document.getElementById('weather-big-temp').textContent = '34°C';
+                const [currentRes, forecastRes] = await Promise.all([
+                    fetch(`https://api.openweathermap.org/data/2.5/weather?q=Garissa,KE&units=metric&appid=${apiKey}`),
+                    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Garissa,KE&units=metric&appid=${apiKey}`)
+                ]);
+                const current = await currentRes.json();
+                const forecast = await forecastRes.json();
+                
+                // 1. Current Weather
+                document.getElementById('wp-temp').textContent = Math.round(current.main.temp) + '°';
+                document.getElementById('wp-icon').textContent = getWeatherIcon(current.weather[0].id);
+                const desc = current.weather[0].description;
+                document.getElementById('wp-desc').textContent = desc.charAt(0).toUpperCase() + desc.slice(1);
+                document.getElementById('wp-hl').textContent = `${Math.round(current.main.temp_max)}° / ${Math.round(current.main.temp_min)}°`;
+                document.getElementById('wp-feels').textContent = Math.round(current.main.feels_like) + '°';
+                
+                // Time formatting
+                const now = new Date();
+                const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                let hours = now.getHours();
+                const ampm = hours >= 12 ? 'pm' : 'am';
+                hours = hours % 12;
+                hours = hours ? hours : 12; 
+                const mins = String(now.getMinutes()).padStart(2, '0');
+                document.getElementById('wp-time').textContent = `${days[now.getDay()]}, ${hours}:${mins} ${ampm}`;
+                
+                // Wind
+                const windKmh = Math.round(current.wind.speed * 3.6);
+                document.getElementById('wp-wind').textContent = `Expect winds of up to ${windKmh} km/h`;
+                
+                // 2. Hourly Forecast (Next 6 periods)
+                let hourlyHtml = '';
+                let minTemp = 100, maxTemp = -100;
+                let isWindy = windKmh > 20;
+                
+                forecast.list.slice(0, 7).forEach(f => {
+                    const date = new Date(f.dt * 1000);
+                    let h = date.getHours();
+                    const ampm_h = h >= 12 ? 'pm' : 'am';
+                    h = h % 12; h = h ? h : 12;
+                    const pop = Math.round((f.pop || 0) * 100);
+                    const t = Math.round(f.main.temp);
+                    if(t < minTemp) minTemp = t;
+                    if(t > maxTemp) maxTemp = t;
+                    
+                    hourlyHtml += `
+                        <div class="wp-hr-item">
+                            <div class="wp-hr-time">${h} ${ampm_h}</div>
+                            <div class="wp-hr-icon">${getWeatherIcon(f.weather[0].id)}</div>
+                            <div class="wp-hr-temp">${t}°</div>
+                            <div class="wp-hr-pop">💧 ${pop}%</div>
+                        </div>
+                    `;
+                });
+                document.getElementById('wp-hourly').innerHTML = hourlyHtml;
+                
+                const conditionsDesc = isWindy ? `Windy and ${desc}.` : `${desc.charAt(0).toUpperCase() + desc.slice(1)}.`;
+                document.getElementById('wp-hourly-desc').textContent = `${conditionsDesc} Highs ${maxTemp}°C and lows ${minTemp}°C.`;
+                
+                // 3. Daily Forecast (Aggregate from 3-hour chunks)
+                const dailyMap = {};
+                forecast.list.forEach(f => {
+                    const d = new Date(f.dt * 1000).getDay();
+                    if(!dailyMap[d]) dailyMap[d] = { min: 100, max: -100, pop: 0, icon: f.weather[0].id, wind: f.wind.speed };
+                    dailyMap[d].min = Math.min(dailyMap[d].min, f.main.temp_min);
+                    dailyMap[d].max = Math.max(dailyMap[d].max, f.main.temp_max);
+                    dailyMap[d].pop = Math.max(dailyMap[d].pop, f.pop || 0);
+                });
+                
+                const todayDay = now.getDay();
+                const tomorrowDay = (todayDay + 1) % 7;
+                const nextDay = (todayDay + 2) % 7;
+                
+                const d1 = dailyMap[todayDay] || {min: current.main.temp_min, max: current.main.temp_max, pop: 0, icon: current.weather[0].id, wind: current.wind.speed};
+                const d2 = dailyMap[tomorrowDay] || d1;
+                const d3 = dailyMap[nextDay] || d1;
+                
+                document.getElementById('wp-daily').innerHTML = `
+                    <div class="wp-daily-item" style="font-weight:600; opacity:1">
+                        <div class="wp-d-day">Today</div>
+                        <div class="wp-d-icons">💧 ${Math.round(d1.pop*100)}% 💨 ${getWeatherIcon(d1.icon)}</div>
+                        <div class="wp-d-temps">${Math.round(d1.max)}° ${Math.round(d1.min)}°</div>
+                    </div>
+                    <div class="wp-daily-item">
+                        <div class="wp-d-day">${days[tomorrowDay]}</div>
+                        <div class="wp-d-icons">💧 ${Math.round(d2.pop*100)}% 💨 ${getWeatherIcon(d2.icon)}</div>
+                        <div class="wp-d-temps">${Math.round(d2.max)}° ${Math.round(d2.min)}°</div>
+                    </div>
+                    <div class="wp-daily-item">
+                        <div class="wp-d-day">${days[nextDay]}</div>
+                        <div class="wp-d-icons">💧 ${Math.round(d3.pop*100)}% 💨 ${getWeatherIcon(d3.icon)}</div>
+                        <div class="wp-d-temps">${Math.round(d3.max)}° ${Math.round(d3.min)}°</div>
+                    </div>
+                `;
+                
+                // also update old navbar elements if they still exist
+                if(document.getElementById('weather-temp')) document.getElementById('weather-temp').textContent = Math.round(current.main.temp) + '°C';
+                
+            } catch (e) {
+                console.error("Weather error:", e);
+                document.getElementById('wp-desc').textContent = 'Data unavailable';
             }
         }
 
@@ -1485,8 +1632,8 @@
             return '🌡️';
         }
 
-        fetchWeather();
-        setInterval(fetchWeather, 600000); // refresh every 10 min
+        fetchWeatherPro();
+        setInterval(fetchWeatherPro, 600000); // refresh every 10 min
 
         // ================================================================
         // MAP LOADING

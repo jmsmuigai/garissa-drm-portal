@@ -201,13 +201,11 @@ def generate_dashboard(weather, ai_analysis):
             height: 250px;
             opacity: 0.15;
             pointer-events: none;
-            animation: spin 60s linear infinite;
         }}
         @keyframes pulse-gold {{
             0% {{ filter: drop-shadow(0 0 5px rgba(255,215,0,0.3)); }}
             100% {{ filter: drop-shadow(0 0 20px rgba(255,215,0,0.8)); }}
         }}
-        @keyframes spin {{ 100% {{ transform: rotate(360deg); }} }}
     </style>
 </head>
 <body>
@@ -225,7 +223,6 @@ def generate_dashboard(weather, ai_analysis):
     <div class="container">
         <!-- LEFT COLUMN: Live Telemetry -->
         <div class="panel">
-            <img src="garissa_logo_neon.png" class="neon-logo-bg" alt="Neon Logo Background">
             <div class="panel-title">📡 LIVE CLIMATE TELEMETRY</div>
             
             <div class="metric-grid">
