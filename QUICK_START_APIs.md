@@ -12,7 +12,7 @@
 # ========================================
 
 # Gemini AI (get yours at: https://makersuite.google.com/app/apikey)
-GEMINI_API_KEY = "AIzaSyDDZludrLe0owCB3jFvPWSp8b3ZBx5hBmQ"
+GEMINI_API_KEY = "your_new_key_here"
 
 # Google Cloud Billing (you have this!)
 GCP_BILLING_ACCOUNT = "013D12-524A4C-CBF5AA"

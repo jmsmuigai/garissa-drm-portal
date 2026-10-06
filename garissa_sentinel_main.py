@@ -3,6 +3,7 @@
 Garissa Sentinel - Digital Twin for Ecological Security
 Main analysis engine for satellite-based environmental monitoring
 """
+import os
 import ee
 import geemap
 import pandas as pd
@@ -287,7 +288,7 @@ class GarissaSentinel:
             print("❌ No data available for AI analysis")
             return
         
-        advisor = GeminiAdvisor(api_key="AIzaSyDDZludrLe0owCB3jFvPWSp8b3ZBx5hBmQ")
+        advisor = GeminiAdvisor(api_key=os.environ.get("GOOGLE_API_KEY", ""))
         
         # Generate comprehensive report
         report = advisor.generate_advisory_report(camp_health_df)

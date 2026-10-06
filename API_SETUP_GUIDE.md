@@ -110,7 +110,7 @@ In `GARISSA_SENTINEL_COMPLETE.ipynb`, look for this cell (near the top):
 # 🔑 YOUR API KEYS - EDIT THESE!
 # ========================================
 
-GEMINI_API_KEY = "AIzaSyDDZludrLe0owCB3jFvPWSp8b3ZBx5hBmQ"  # ← REPLACE
+GEMINI_API_KEY = "your_new_key_here"  # ← REPLACE
 GCP_BILLING_ACCOUNT = "013D12-524A4C-CBF5AA"  # ← Already correct!
 GCP_PROJECT_ID = "garissa-sentinel-drm"  # ← REPLACE if different
 ```

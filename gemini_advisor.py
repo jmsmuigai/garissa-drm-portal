@@ -3,6 +3,7 @@
 Gemini AI Advisor for Garissa Environmental Analysis
 Generates actionable environmental advice and community alerts
 """
+import os
 import google.generativeai as genai
 from datetime import datetime
 import pandas as pd
@@ -201,7 +202,7 @@ if __name__ == "__main__":
     })
     
     # Note: Using test API key - replace with actual key
-    advisor = GeminiAdvisor(api_key="AIzaSyDDZludrLe0owCB3jFvPWSp8b3ZBx5hBmQ")
+    advisor = GeminiAdvisor(api_key=os.environ.get("GOOGLE_API_KEY", ""))
     
     # Test report generation
     report = advisor.generate_advisory_report(sample_data)

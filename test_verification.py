@@ -3,6 +3,7 @@
 Verification Test Suite for Garissa Sentinel
 Tests all components to ensure they work correctly
 """
+import os
 import sys
 from pathlib import Path
 import subprocess
@@ -74,7 +75,7 @@ def test_gemini_api():
         import google.generativeai as genai
         
         # Use API key from user's profile
-        api_key = "AIzaSyDDZludrLe0owCB3jFvPWSp8b3ZBx5hBmQ"
+        api_key = os.environ.get("GOOGLE_API_KEY", "")
         genai.configure(api_key=api_key)
         
         model = genai.GenerativeModel('gemini-pro')
