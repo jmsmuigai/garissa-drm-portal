@@ -1517,14 +1517,14 @@
         // LIVE WEATHER PRO
         // ================================================================
         async function fetchWeatherPro() {
-            const apiKey = '3755865e1110b239c55dee68b8dc0bc5';
+            // Open-Meteo: free and keyless, so no API key ships in this public page.
             try {
-                const [currentRes, forecastRes] = await Promise.all([
-                    fetch(`https://api.openweathermap.org/data/2.5/weather?q=Garissa,KE&units=metric&appid=${apiKey}`),
-                    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Garissa,KE&units=metric&appid=${apiKey}`)
-                ]);
-                const current = await currentRes.json();
-                const forecast = await forecastRes.json();
+                const om = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-0.4532&longitude=39.6461&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m&hourly=temperature_2m,weather_code,precipitation_probability,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min&forecast_days=3&timezone=Africa%2FNairobi&wind_speed_unit=ms').then(r => r.json());
+                const wmo = c => c >= 95 ? 200 : c >= 80 ? 521 : c >= 61 ? 501 : c >= 51 ? 300 : c >= 45 ? 741 : c === 0 ? 800 : 802;
+                const wmoText = c => c >= 95 ? 'thunderstorm' : c >= 80 ? 'rain showers' : c >= 61 ? 'rain' : c >= 51 ? 'drizzle' : c >= 45 ? 'fog' : c === 0 ? 'clear sky' : c <= 2 ? 'partly cloudy' : 'cloudy';
+                const current = { main: { temp: om.current.temperature_2m, feels_like: om.current.apparent_temperature, temp_max: om.daily.temperature_2m_max[0], temp_min: om.daily.temperature_2m_min[0] }, weather: [{ id: wmo(om.current.weather_code), description: wmoText(om.current.weather_code) }], wind: { speed: om.current.wind_speed_10m } };
+                const nowMs = Date.now();
+                const forecast = { list: om.hourly.time.map((t, i) => ({ dt: Date.parse(t + ':00+03:00') / 1000, pop: (om.hourly.precipitation_probability[i] || 0) / 100, main: { temp: om.hourly.temperature_2m[i], temp_min: om.hourly.temperature_2m[i], temp_max: om.hourly.temperature_2m[i] }, weather: [{ id: wmo(om.hourly.weather_code[i]) }], wind: { speed: om.hourly.wind_speed_10m[i] } })).filter(f => f.dt * 1000 >= nowMs - 3600000).filter((f, i) => i % 3 === 0) };
                 
                 // 1. Current Weather
                 document.getElementById('wp-temp').textContent = Math.round(current.main.temp) + '°';
