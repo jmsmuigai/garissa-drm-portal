@@ -31,3 +31,10 @@ OUTPUT/flood_extents.geojson
 # OS Files
 .DS_Store
 Thumbs.db
+
+# Secrets and local environment (added by docs refresh)
+.env.*
+!.env.example
+*.key
+serviceAccount*.json
+node_modules/

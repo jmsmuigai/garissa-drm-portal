@@ -1,134 +1,123 @@
-<div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Flag_of_Garissa_County.png/800px-Flag_of_Garissa_County.png" width="120" alt="Garissa County Flag">
-  <h1>🌊 GARISSA COUNTY — EL NIÑO EARLY WARNING SYSTEM</h1>
-  <p><strong>Geospatial Intelligence & Agentic AI for Disaster Risk Reduction</strong></p>
-  
-  [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org)
-  [![QGIS](https://img.shields.io/badge/QGIS-3.28%20LTR-green.svg)](https://qgis.org)
-  [![Earth Engine](https://img.shields.io/badge/Google-Earth%20Engine-orange.svg)](https://earthengine.google.com/)
-  [![Gemini](https://img.shields.io/badge/AI-Gemini%20Pro-purple.svg)](https://deepmind.google/technologies/gemini/)
-</div>
+![Garissa DRM Portal](assets/tovutech-banner.svg)
 
----
+<p align="center">
+  <img alt="Status: Research prototype" src="https://img.shields.io/badge/status-research%20prototype-F97316?style=for-the-badge">
+  <img alt="Python" src="https://img.shields.io/badge/Python-GeoPandas-22D3EE?style=for-the-badge&logo=python&logoColor=white">
+  <img alt="QGIS" src="https://img.shields.io/badge/QGIS-PyQGIS-22C55E?style=for-the-badge&logo=qgis&logoColor=white">
+  <img alt="Earth Engine" src="https://img.shields.io/badge/Google-Earth%20Engine-8B5CF6?style=for-the-badge&logo=google&logoColor=white">
+  <a href="https://www.tovutech.com/projects/gewas/"><img alt="Case study" src="https://img.shields.io/badge/case%20study-tovutech.com-EC4899?style=for-the-badge"></a>
+  <a href="https://jmsmuigai.github.io/Garissa-Early-Warning/"><img alt="Related live portal" src="https://img.shields.io/badge/related%20live%20portal-GitHub%20Pages-0A0F2C?style=for-the-badge&logo=github"></a>
+</p>
 
-## 📖 Overview
+## What it is
 
-This repository contains the **Garissa Digital Twin**, an automated spatial pipeline designed to predict, visualize, and mitigate the impact of the impending late-2026 Super El Niño.
+The **Garissa DRM Portal** is the GIS working repository behind GEWAS (Garissa Early Warning & Adaptation System). It holds the Python, PyQGIS and Earth Engine scripts, QGIS projects and source layers used to map how exposed schools, health facilities, boreholes, camps and towns in Garissa County are to flooding ahead of the expected late-2026 El Niño rains.
 
-By fusing **UNOSAT historical flood data**, **Google Earth Engine satellite imagery**, and **Gemini AI**, this system assesses the vulnerability of critical infrastructure (schools, hospitals, boreholes) and generates actionable community alerts.
+It is meant for GIS analysts and county disaster-risk staff. It is a **research and analysis workspace**, not a production system: risk zones are buffers around historical (UNOSAT) flood extents, not hydraulic flood models. The published, maintained web portal now lives in [Garissa-Early-Warning](https://github.com/jmsmuigai/Garissa-Early-Warning).
 
----
+## What it does
 
-## 🏗️ System Architecture
+- 🧹 **Cleans and standardises source layers** – `1_data_ingestion.py` reads borehole and infrastructure data, reprojects to EPSG:4326 and keeps only points inside the Garissa County boundary.
+- 🌊 **Builds flood-risk zones** – `2_flood_risk_analysis.py` draws non-overlapping concentric bands around the UNOSAT 2024 flood extent (~500 m high, ~1.5 km medium, ~3.3 km low, ~5.5 km extreme), clips them to the county and tags every asset with a risk level and distance to flooding. It also contains a small NumPy neural-network scoring experiment.
+- 🗺️ **Styles a QGIS workspace** – `3_qgis_workspace_builder.py` (run inside the QGIS Python console) loads, groups, labels and colours all layers by risk.
+- 📊 **Exports for dashboards** – `4_looker_export.py` writes CSVs for Google Looker Studio; `5_generate_dashboard.py` and `generate_all_interactive_maps.py` build standalone Leaflet/Folium HTML maps in `OUTPUT/`.
+- 🖼️ **Generates static maps** – `6_generate_maps.py` renders a series of PNG maps and infographics.
+- 🛰️ **Earth Engine helpers** – `2_gee_upload_automation.py` and the `GEE_*.ipynb` notebooks upload outputs and analyse CHIRPS rainfall / Sentinel imagery.
+- 🤖 **Optional AI advisory** – `gemini_advisor.py` uses the Gemini API (key from `GOOGLE_API_KEY`) to draft an advisory report, saved as `OUTPUT/AI_FLOOD_RISK_ADVISORY.md`. The dashboard's "Generate AI Report" button opens this pre-generated file; it does not call an AI model from the browser.
+- ☁️ **Keyless weather** – the dashboard shows a 3-day forecast for Garissa Town from Open-Meteo (no API key).
+
+## How it works
 
 ```mermaid
-graph TD
-    subgraph Data Sources
-        A[UNOSAT 2024 Flood Extent] --> I[1_data_ingestion.py]
-        B[Infrastructure Shapefiles] --> I
-        C[Sentinel & CHIRPS via GEE] --> E[GEE Upload / Colab]
-    end
-
-    subgraph Processing Pipeline
-        I -->|Cleaned GeoJSONs| R[2_flood_risk_analysis.py]
-        R -->|Distance & Risk Levels| O((OUTPUT/))
-    end
-
-    subgraph Visualization & Outputs
-        O -->|PyQGIS| Q[3_qgis_workspace_builder.py]
-        O -->|CSV| L[4_looker_export.py]
-        O -->|HTML/JS| D[5_generate_dashboard.py]
-        O -->|Python/Markdown| C[Colab Flagship Notebook]
-    end
-
-    Q -->|QGZ File| QGIS[Professional QGIS Map]
-    L -->|Data Source| Looker[Looker Studio Dashboard]
-    D -->|Standalone| Web[Community HTML Dashboard]
-    C -->|Gemini AI| Report[Bilingual Advisory Report]
+flowchart LR
+    A[UNOSAT 2024 flood extent] --> C[2_flood_risk_analysis.py<br/>concentric risk buffers]
+    B[Schools · health · boreholes<br/>camps · towns shapefiles] --> I[1_data_ingestion.py<br/>clean + EPSG:4326]
+    I --> C
+    C --> O[(OUTPUT/<br/>risk-tagged GeoJSON + CSV)]
+    O --> Q[3_qgis_workspace_builder.py<br/>QGIS project]
+    O --> L[4_looker_export.py<br/>Looker Studio CSV]
+    O --> D[5_generate_dashboard.py<br/>Leaflet HTML]
+    O --> M[6_generate_maps.py<br/>PNG maps]
+    O --> G[gemini_advisor.py<br/>advisory report]
+    E[Earth Engine<br/>CHIRPS · Sentinel] -.-> N[GEE notebooks]
 ```
 
----
+## Tech stack
 
-## 🚀 Quick Start
-
-### 1. The Flagship Colab Notebook (Recommended)
-For decision-makers, stakeholders, and presentations, use the flagship notebook. It requires no local installation.
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/YOUR_COLAB_LINK_HERE) *(Upload `garissa_elnino_flood_risk.ipynb` to Colab)*
-
-**What it does:**
-- Interactive Folium maps for Schools, Hospitals, and Water Resources
-- Earth Engine CHIRPS rainfall analysis
-- Gemini AI auto-generates a bilingual advisory report
-- Generates beautiful community dashboard summary cards
-
-### 2. The Offline HTML Dashboard & GEWAS Portal (For Community Sharing)
-Need something to share on WhatsApp or view offline? The HTML dashboard is a self-contained interactive map with a modern aesthetic, complete with a 3D floating Garissa County logo.
-
-**New Features (v3.0):**
-- **Version History System:** Access historical layouts and prototype stages via the sidebar menu (`v1_prototype.html`, `v2_beta.html`, `index.html`).
-- **One-Click AI Report Generation:** Click the new "📄 Generate AI Report" button in the map viewport to stream and render a fully analyzed AI vulnerability report.
-- **3D Floating Identity:** Features a beautiful, animated 3D County Government crest that levitates above the map interface.
-
-```bash
-# Run the generator
-python3 5_generate_dashboard.py
-```
-*Then double-click `index.html` in your browser.*
-
-### 3. Professional QGIS Workspace
-For GIS professionals who need to modify maps or print high-resolution PDFs.
-
-1. Open **QGIS**
-2. Open the **Python Console** (`Plugins` -> `Python Console`)
-3. Click the **Show Editor** icon (paper/pencil)
-4. Open `3_qgis_workspace_builder.py` and run it
-5. *Result: A beautifully styled, risk-coded QGIS project is created instantly.*
-
----
-
-## ⚙️ The Pipeline Scripts
-
-To run the entire system end-to-end, simply execute:
-```bash
-./run_full_pipeline.sh
-```
-
-### Script Breakdown
-| Script | Description |
+| Area | Tools |
 |---|---|
-| `1_data_ingestion.py` | Cleans raw shapefiles and standardizes projections to EPSG:4326. |
-| `2_flood_risk_analysis.py` | Generates 500m (High), 1.5km (Med), and 3.3km (Low) flood buffers and tags all infrastructure with risk levels and distance-to-flood. |
-| `3_qgis_workspace_builder.py` | Automates QGIS to load, group, label, and apply professional risk-based symbology to all layers. |
-| `4_looker_export.py` | Aggregates risk data into optimized CSVs for Google Looker Studio. |
-| `5_generate_dashboard.py` | Builds a standalone HTML/Leaflet map and Chart.js dashboard. |
-| `2_gee_upload_automation.py` | Uploads the risk-assessed outputs to your Earth Engine Assets (`garissadrm`). |
+| Geoprocessing | Python, GeoPandas, Fiona, Shapely, pyproj, Rasterio, pandas |
+| Desktop GIS | QGIS 3.28 LTR + PyQGIS (QGIS projects `*.qgz` included) |
+| Remote sensing | Google Earth Engine (`earthengine-api`, `geemap`) |
+| Web output | Leaflet, Folium, Chart.js, Kepler.gl |
+| Reporting | Jupyter notebooks, Looker Studio exports |
+| AI (optional) | Google Gemini (`google-generativeai`) |
 
----
+## Getting started
 
-## 🔐 Security & API Keys
-
-This project uses `.env` files to protect API keys. **Never commit your `.env` file to GitHub.**
-
-Create a `.env` file in the root directory:
-```env
-# Google Gemini AI
-GOOGLE_API_KEY=your_key_here
-
-# Google Earth Engine
-GEE_PROJECT_ID=garissadrm
+```bash
+git clone https://github.com/jmsmuigai/garissa-drm-portal.git
+cd garissa-drm-portal
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
+Create a `.env` file (git-ignored) only if you need the optional services:
+
+```env
+GOOGLE_API_KEY=your_gemini_key        # optional, AI advisory report
+GEE_PROJECT_ID=your_earth_engine_project
+```
+
+Then:
+
+```bash
+./run_full_pipeline.sh          # ingestion → risk analysis → maps → dashboards → Looker export
+# or run steps one by one
+python3 2_flood_risk_analysis.py
+python3 5_generate_dashboard.py  # then open index.html in a browser
+```
+
+- **QGIS:** open QGIS → *Plugins → Python Console → Show Editor* → open `3_qgis_workspace_builder.py` → Run.
+- **Notebooks:** `garissa_elnino_flood_risk.ipynb` (story notebook) and `GEE_Garissa_Analysis.ipynb` run in Jupyter or Google Colab.
+- **Earth Engine:** run `earthengine authenticate` first; see [`GEE_SETUP_GUIDE.md`](GEE_SETUP_GUIDE.md).
+
+> ⚠️ Several helper scripts still contain a hard-coded local path (`/Users/james/...`). Adjust `BASE_DIR` before running them on another machine. Large rasters (`*.tif`, `*.gpkg`) are git-ignored and must be supplied separately.
+
+Further guides in this repo: [`USER_MANUAL.md`](USER_MANUAL.md), [`API_SETUP_GUIDE.md`](API_SETUP_GUIDE.md), [`COLAB_USER_GUIDE.md`](COLAB_USER_GUIDE.md), [`GEOFENCING_GUIDE.md`](GEOFENCING_GUIDE.md), [`QGIS_PLUGINS_GUIDE.md`](QGIS_PLUGINS_GUIDE.md), [`WAY_FORWARD.md`](WAY_FORWARD.md).
+
+### Outputs (`OUTPUT/`)
+
+- `*_risk_assessed.geojson` – assets tagged with risk level and distance to flood
+- `flood_risk_summary_statistics.csv`, `looker_combined_risk_data.csv` – summary tables
+- `garissa_flood_risk_dashboard.html` and other Leaflet maps
+- `AI_FLOOD_RISK_ADVISORY.md` – Gemini-drafted advisory (when generated)
+- `GarissaDRM_ElNino_2026.qgz` – QGIS project (repo root)
+
+## Data & privacy
+
+- **Sources:** UNOSAT flood extents, county infrastructure registers (schools, health facilities, boreholes, water pans), Dadaab camp blocks, OSM roads, Kenya SRTM 30 m, LUC2010 land cover, 2019 census population, HDX drought/IDP data, Open-Meteo, CHIRPS via Earth Engine.
+- Some values in the scripts (sub-county socio-economic figures, fallback road lines) are hard-coded approximations for when the raw layers are missing — treat outputs as indicative.
+- Names and phone numbers were stripped from the WASH and water-point data. Personal data must not be committed; see [SECURITY.md](SECURITY.md).
+
+## Status & roadmap
+
+**Status:** research prototype / analysis workspace, superseded for public use by the [Garissa-Early-Warning](https://github.com/jmsmuigai/Garissa-Early-Warning) portal.
+
+Possible next steps:
+- Replace hard-coded paths with a config file and add a pinned environment.
+- Replace buffer-based zones with hydrological or hydraulic modelling (e.g. HAND / DEM-based inundation).
+- Validate risk zones against observed 2026 flood extents.
+- Tidy experimental and one-off `fix_*` / `test_*` scripts.
+
+## Security
+
+See [SECURITY.md](SECURITY.md). Keys go in `.env` (never committed); Earth Engine credentials stay on your machine.
+
 ---
 
-## 📊 Outputs & Deliverables
-
-All generated files are saved in the `OUTPUT/` directory:
-- `*_Risk_Assessed.geojson`: Raw spatial data with risk tags.
-- `flood_risk_summary_statistics.csv`: Summary tables.
-- `garissa_flood_risk_dashboard.html`: The offline interactive dashboard.
-- `AI_FLOOD_RISK_ADVISORY.md`: The Gemini-generated DRR report.
-- `GarissaDRM_ElNino_2026.qgz`: The saved QGIS project.
-
----
-*Built with Google Antigravity IDE for the Garissa County Government & Humanitarian Partners.*
+<p align="center">
+  <b>Built by James M. Mburu · TovuTech Limited</b><br>
+  <a href="https://www.tovutech.com">https://www.tovutech.com</a> · <a href="mailto:intelligence@tovutech.com">intelligence@tovutech.com</a><br>
+  📖 Case study: <a href="https://www.tovutech.com/projects/gewas/">tovutech.com/projects/gewas</a>
+</p>
